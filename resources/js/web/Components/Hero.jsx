@@ -1,3 +1,5 @@
+import heroImg from "./images/hero.png"
+
 const Hero = () => {
     return (
         <section className="px-4">
@@ -9,7 +11,9 @@ const Hero = () => {
                         <input type="text" />
                     </form>
                 </div>
-                <div></div>
+                <div>
+                    <img src={heroImg} alt="" />
+                </div>
             </div>
         </section>
     );
