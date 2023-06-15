@@ -4,7 +4,8 @@
             <div>
                 <h1 class="text-2xl text-primary font-bold">dByte</h1>
             </div>
-            <div class="flex flex-col items-center absolute top-[120%] right-4 px-4 rounded-md bg-primary/5 md:flex-row md:static md:px-0 md:gap-5 md:bg-transparent">
+            <div
+                class="flex flex-col items-center absolute top-[120%] right-4 px-4 rounded-md bg-primary/10 md:flex-row md:static md:px-0 md:gap-7 md:bg-transparent">
                 <a href="#" class="text-lg text-primary font-medium py-2 mx-5 md:mx-0">HOME</a>
                 <a href="#" class="text-lg text-primary font-medium py-2 mx-5 md:mx-0">MASUK</a>
                 <a href="#" class="text-lg text-primary font-medium py-2 mx-5 md:mx-0">DAFTAR</a>
