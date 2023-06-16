@@ -7,3 +7,24 @@
         font-family: 'Poppins', sans-serif;
     }
 }
+
+@layer utilities {
+
+    /* Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        /* IE and Edge */
+        scrollbar-width: none;
+        /* Firefox */
+    }
+}
+
+@layer components {
+    .major-link {
+        @apply px-3 py-1 font-medium text-base text-center text-primary border-2 border-secondary whitespace-nowrap rounded-md transition hover:bg-primary hover:text-white hover:border-primary md:text-lg;
+    }
+}

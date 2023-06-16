@@ -5,7 +5,7 @@ const GuestLayout = ({ children }) => {
     return (
         <>
             <Navbar />
-            <div className="md:max-w-[895px] m-auto border border-black h-[1000px]">
+            <div className="md:max-w-[865px] m-auto">
                 <main>
                     {children}
                 </main>
