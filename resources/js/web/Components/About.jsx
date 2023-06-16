@@ -1,4 +1,3 @@
-import profileImg from "../../../../public/images/profile.png"
 import naufalImg from "./../../../../public/images/naufal.jpg"
 
 const About = () => {

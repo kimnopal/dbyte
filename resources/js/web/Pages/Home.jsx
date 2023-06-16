@@ -7,7 +7,6 @@ const Home = () => {
     return (
         <>
             <GuestLayout>
-                {/* <h1>hello world</h1> */}
                 <Hero />
                 <Major />
                 <About />
