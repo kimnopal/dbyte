@@ -20,6 +20,14 @@ Route::get('/', function () {
     return Inertia::render('Home');
 });
 
+Route::post('/login', function ($id) {
+    
+});
+
+Route::post('/register', function ($id) {
+    
+});
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
