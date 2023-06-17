@@ -21,11 +21,10 @@ Route::get('/', function () {
 });
 
 Route::post('/login', function ($id) {
-    
+    return Inertia::render('Login');
 });
 
 Route::post('/register', function ($id) {
-    
 });
 
 Route::get('/dashboard', function () {
@@ -38,4 +37,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
