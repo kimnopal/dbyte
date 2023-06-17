@@ -6,14 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Major extends Model
+class Badge extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'icon'];
 
-    public function universities(): BelongsToMany
+    public function users(): BelongsToMany
     {
-        return $this->belongsToMany(University::class);
+        return $this->belongsToMany(User::class);
     }
 }
