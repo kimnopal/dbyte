@@ -17,7 +17,7 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    return Inertia::render('Auth/Register');
+    return Inertia::render('Auth/Login');
 });
 
 Route::get('/dashboard', function () {

@@ -16,32 +16,36 @@ export default function Login() {
             <div className="border border-primary rounded-lg w-5/6 lg:w-1/2 p-4 lg:px-24 lg:py-16 my-2">
                 <h1 className="text-center font-bold text-xl">Masuk</h1>
                 <form className="flex flex-col p-8 justify-evenly ">
-                    <div className="w-full ">
+                    <div className="w-full flex flex-row items-center px-2 border border-solid border-slate-700 rounded-lg my-2">
+                        <img
+                            className="h-8 relative"
+                            src="/images/profile.png"
+                            alt=""
+                        />
                         <input
-                            className="p-2 rounded-lg my-2 w-full border border-solid border-slate-700"
+                            className="p-2 my-2 w-full !outline-none"
                             name="user_name"
                             type="text"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
                             placeholder="Username"
                         />
-                        <div class="input-icon">
-                            <i class="fa fa-user"></i>
-                        </div>
                     </div>
 
-                    <div className="w-full ">
+                    <div className="w-full flex flex-row items-center px-2 border border-solid border-slate-700 rounded-lg my-2">
+                        <img
+                            className="h-8 relative"
+                            src="/images/profile.png"
+                            alt=""
+                        />
                         <input
-                            className="p-2 rounded-lg my-2 w-full border border-solid border-slate-700"
+                            className="p-2 my-2 w-full !outline-none"
                             name="password"
                             type="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             placeholder="Password"
                         />
-                        <div class="input-icon">
-                            <i class="fa fa-user"></i>
-                        </div>
                     </div>
                     <p className="text-sm">
                         Belum punya akun?{" "}
