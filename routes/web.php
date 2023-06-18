@@ -29,7 +29,7 @@ Route::middleware(['guest'])->group(function () {
     Route::post('/register', [RegisterController::class, 'store']);
 });
 Route::get('/', function () {
-    return Inertia::render('Dashboard');
+    return Inertia::render('Profile');
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth');
