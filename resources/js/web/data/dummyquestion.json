@@ -1,0 +1,72 @@
+[
+    {
+        "id": "1",
+        "person": {
+            "name": "Indah Karisma",
+            "major": "Teknik Elektro",
+            "profile": "/images/profile.png",
+            "school": "Universitas Jenderal Soedirman"
+        },
+        "question": {
+            "question": "Mas nopal info tubes dong",
+            "answercount": 0,
+            "date": "1 Juni 2023"
+        }
+    },
+    {
+        "id": "2",
+        "person": {
+            "name": "Bagus Andhika",
+            "major": "Teknik Elektro",
+            "profile": "/images/profile.png",
+            "school": "Universitas Jenderal Soedirman"
+        },
+        "question": {
+            "question": "Cuy  Infokan Cover Praktikum Instru, Kuis Meslis juga yang di OCW",
+            "answercount": 0,
+            "date": "1 Juni 2023"
+        }
+    },
+    {
+        "id": "3",
+        "person": {
+            "name": "Bagus Andhika",
+            "major": "Teknik Elektro",
+            "profile": "/images/profile.png",
+            "school": "Universitas Jenderal Soedirman"
+        },
+        "question": {
+            "question": "Cuy  Infokan Cover Praktikum Instru, Kuis Meslis juga yang di OCW",
+            "answercount": 0,
+            "date": "1 Juni 2023"
+        }
+    },
+    {
+        "id": "4",
+        "person": {
+            "name": "Bagus Andhika",
+            "major": "Teknik Elektro",
+            "profile": "/images/profile.png",
+            "school": "Universitas Jenderal Soedirman"
+        },
+        "question": {
+            "question": "Cuy  Infokan Cover Praktikum Instru, Kuis Meslis juga yang di OCW",
+            "answercount": 0,
+            "date": "1 Juni 2023"
+        }
+    },
+    {
+        "id": "5",
+        "person": {
+            "name": "Bagus Andhika",
+            "major": "Teknik Elektro",
+            "profile": "/images/profile.png",
+            "school": "Universitas Jenderal Soedirman"
+        },
+        "question": {
+            "question": "Cuy  Infokan Cover Praktikum Instru, Kuis Meslis juga yang di OCW",
+            "answercount": 0,
+            "date": "1 Juni 2023"
+        }
+    }
+]
