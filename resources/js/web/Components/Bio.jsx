@@ -2,7 +2,7 @@ import { Link } from "@inertiajs/react";
 
 const Bio = () => {
     return (
-        <section className="flex flex-col lg:flex-row px-4 pt-16 pb-6 md:pb-12 gap-y-3">
+        <section className="flex flex-col lg:flex-row px-4 pt-20 pb-6 md:pb-12 gap-y-3">
             <div className="w-full lg:w-3/5 flex flex-col gap-y-2">
                 <div className="w-full flex flex-row gap-4">
                     <img
