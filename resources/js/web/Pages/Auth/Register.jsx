@@ -1,10 +1,19 @@
-import { Link } from "@inertiajs/react";
+import { Link, useForm } from "@inertiajs/react";
 import { useState } from "react";
 
-export default function Register() {
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const [email, setEmail] = useState("");
+export default function Register({ csrf_token }) {
+    const { data, setData, post, errors } = useForm({
+        username: '',
+        email: '',
+        password: '',
+    });
+
+    const submit = (e) => {
+        e.preventDefault()
+        post('/register')
+    }
+
+    console.log(errors)
 
     return (
         <div className="flex flex-col w-full min-h-screen items-center my-8 ">
@@ -16,7 +25,8 @@ export default function Register() {
             </h1>
             <div className="border border-primary rounded-lg w-5/6 lg:w-1/2 p-4 lg:px-24 lg:py-16 my-2">
                 <h1 className="text-center font-bold text-xl">Daftar</h1>
-                <form className="flex flex-col p-8 justify-evenly ">
+                <form className="flex flex-col p-8 justify-evenly" onSubmit={submit}>
+                    <input type="hidden" name="_token" value={csrf_token} />
                     <div className="w-full flex flex-row items-center px-2 border border-solid border-slate-700 rounded-lg my-2">
                         <img
                             className="h-8 relative"
@@ -25,10 +35,10 @@ export default function Register() {
                         />
                         <input
                             className="p-2 my-2 w-full !outline-none"
-                            name="user_name"
+                            name="username"
                             type="text"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
+                            value={data.username}
+                            onChange={(e) => setData('username', e.target.value)}
                             placeholder="Username"
                         />
                     </div>
@@ -43,8 +53,8 @@ export default function Register() {
                             className="p-2 my-2 w-full !outline-none"
                             name="email"
                             type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                            value={data.email}
+                            onChange={(e) => setData('email', e.target.value)}
                             placeholder="Email"
                         />
                     </div>
@@ -59,21 +69,21 @@ export default function Register() {
                             className="p-2 my-2 w-full !outline-none"
                             name="password"
                             type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
+                            value={data.password}
+                            onChange={(e) => setData('password', e.target.value)}
                             placeholder="Password"
                         />
                     </div>
 
-                    <p className="text-sm">
+                    <p className="text-sm mb-2">
                         Sudah punya akun?{" "}
-                        <Link className="text-sky-500">Masuk disini</Link>
+                        <Link href="/login" className="text-sky-500">Masuk disini</Link>
                     </p>
                     <button
                         className="bg-primary py-2 px-4 text-white rounded lg:w-24 lg:self-end"
                         type="submit"
                     >
-                        Masuk
+                        Daftar
                     </button>
                 </form>
             </div>

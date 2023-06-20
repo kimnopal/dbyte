@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 use Inertia\Inertia;
+use Inertia\Response;
 
 class AuthController extends Controller
 {
-    public function login()
+    public function login(): Response
     {
         // dd(csrf_token());
         return Inertia::render('Auth/Login', [
@@ -17,7 +19,7 @@ class AuthController extends Controller
         ]);
     }
 
-    public function doLogin(Request $request)
+    public function doLogin(Request $request): Response|RedirectResponse
     {
         $credentials = $request->validate([
             'username' => ['required'],
@@ -31,10 +33,6 @@ class AuthController extends Controller
             return redirect()->intended('/forum');
         }
 
-        return Inertia::render('Auth/Login', [
-            'csrf_token' => csrf_token(),
-            'error' => 'Username atau password tidak sesuai, silahkan masukkan dengan benar'
-        ]);
-        // return back()->withErrors('test');
+        return back()->with('error', 'Username atau password tidak sesuai, silahkan masukkan dengan benar');
     }
 }

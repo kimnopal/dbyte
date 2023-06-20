@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RegisterController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -25,7 +26,13 @@ Route::get('/login', [AuthController::class, 'login']);
 Route::post('/login', [AuthController::class, 'doLogin']);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+Route::get('/register', [RegisterController::class, 'index']);
+Route::post('/register', [RegisterController::class, 'store']);
+
+>>>>>>> 714632a (menambahkan fitur register dan memperbaiki penggunaan session)
 Route::get('/forum', function () {
     return Inertia::render('Forum');
 });
