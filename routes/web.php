@@ -21,6 +21,7 @@ Route::get('/', function () {
 });
 
 Route::post('/login', function ($id) {
+
     return Inertia::render('Login');
 });
 
