@@ -19,7 +19,6 @@ class AuthController extends Controller
 
     public function doLogin(Request $request)
     {
-        // dd('yesy');
         $credentials = $request->validate([
             'username' => ['required'],
             'password' => ['required'],
@@ -32,8 +31,10 @@ class AuthController extends Controller
             return redirect()->intended('/forum');
         }
 
-        return back()->withErrors([
-            'error' => 'Username atau password anda tidak sesuai, silahkan masukkan dengan benar'
+        return Inertia::render('Auth/Login', [
+            'csrf_token' => csrf_token(),
+            'error' => 'Username atau password tidak sesuai, silahkan masukkan dengan benar'
         ]);
+        // return back()->withErrors('test');
     }
 }

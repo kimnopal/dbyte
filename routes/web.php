@@ -24,6 +24,12 @@ Route::get('/', function () {
 Route::get('/login', [AuthController::class, 'login']);
 Route::post('/login', [AuthController::class, 'doLogin']);
 
+<<<<<<< HEAD
+=======
+Route::get('/forum', function () {
+    return Inertia::render('Forum');
+});
+>>>>>>> bac8a57 (menambahkan notif gagal login)
 
 // Route::post('/register', function ($id) {
 // });

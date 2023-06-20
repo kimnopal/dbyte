@@ -43,9 +43,9 @@ const Navbar = () => {
                     </div>
                     <div
                         className={`${isToggle ? 'visible opacity-100 !top-[120%]' : 'invisible'} opacity-0 flex flex-col items-center absolute top-[110%] right-4 transition-all px-4 rounded-md bg-white shadow-xl border border-secondary md:border-none md:shadow-none md:visible md:opacity-100 md:flex-row md:static md:px-0 md:gap-7 md:bg-transparent`}>
-                        <Link href="#" className="text-lg text-primary font-semibold py-2 mx-5 md:mx-0">HOME</Link>
-                        <Link href="#" className="text-lg text-primary font-semibold py-2 mx-5 md:mx-0">MASUK</Link>
-                        <Link href="#" className="text-lg text-primary font-semibold py-2 mx-5 md:mx-0">DAFTAR</Link>
+                        <Link href="/" className="text-lg text-primary font-semibold py-2 mx-5 md:mx-0">HOME</Link>
+                        <Link href="/login" className="text-lg text-primary font-semibold py-2 mx-5 md:mx-0">MASUK</Link>
+                        <Link href="/register" className="text-lg text-primary font-semibold py-2 mx-5 md:mx-0">DAFTAR</Link>
                     </div>
                     <div className="flex flex-col gap-[5px] md:hidden" ref={navLinksWrapper} onClick={() => setIsToggle(!isToggle)}>
                         <span className="block w-[28px] h-[3px] bg-primary"></span>
