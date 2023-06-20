@@ -22,7 +22,7 @@ Route::get('/', function () {
     return Inertia::render('Home');
 });
 
-Route::get('/login', [AuthController::class, 'login'])->middleware('guest');
+Route::get('/login', [AuthController::class, 'login'])->middleware('guest')->name('login');
 Route::post('/login', [AuthController::class, 'doLogin'])->middleware('guest');
 
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
@@ -30,7 +30,7 @@ Route::post('/register', [RegisterController::class, 'store'])->middleware('gues
 
 Route::get('/forum', function () {
     return Inertia::render('Forum');
-});
+})->middleware('auth');
 
 // Route::post('/register', function ($id) {
 // });
