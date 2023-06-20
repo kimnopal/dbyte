@@ -2,7 +2,7 @@ import { Link, useForm, usePage } from "@inertiajs/react";
 import { useState } from "react";
 
 // router.post('/login', { _token: this.$page.props.csrf_token, })
-export default function Login({ csrf_token, error, session }) {
+export default function Login({ csrf_token, session }) {
     const { data, setData, post, errors } = useForm({
         username: '',
         password: '',
@@ -10,7 +10,9 @@ export default function Login({ csrf_token, error, session }) {
 
     const submit = (e) => {
         e.preventDefault()
-        post('/login')
+        post('/login', {
+            preserveState: false
+        })
     }
 
     return (
@@ -27,7 +29,7 @@ export default function Login({ csrf_token, error, session }) {
                 <h1 className="text-center font-bold text-xl">Masuk</h1>
                 <form className="flex flex-col p-8 justify-evenly" onSubmit={submit}>
                     <input type="hidden" name="_token" value={csrf_token} />
-                    <div className={`w-full flex flex-row items-center px-2 border border-solid ${errors.username ? 'border-red-500' : 'border-secondary'} rounded-lg my-2`}>
+                    <div className={`w-full flex flex-row items-center px-2 border border-solid ${errors.username ? 'border-red-500' : 'border-primary'} rounded-lg my-2`}>
                         <img
                             className="h-8 relative"
                             src="/images/profile.png"
@@ -40,12 +42,13 @@ export default function Login({ csrf_token, error, session }) {
                             value={data.username}
                             onChange={(e) => setData('username', e.target.value)}
                             placeholder="Username"
+                            autoFocus={true}
                         />
                     </div>
                     {errors.username && <p className="text-red-500 font-normal text-sm mb-2">{errors.username}</p>}
 
 
-                    <div className={`w-full flex flex-row items-center px-2 border border-solid ${errors.password ? 'border-red-500' : 'border-secondary'} rounded-lg my-2`}>
+                    <div className={`w-full flex flex-row items-center px-2 border border-solid ${errors.password ? 'border-red-500' : 'border-primary'} rounded-lg my-2`}>
                         <img
                             className="h-8 relative"
                             src="/images/profile.png"

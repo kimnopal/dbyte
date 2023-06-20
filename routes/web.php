@@ -19,7 +19,7 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    return Inertia::render('Dashboard');
+    return Inertia::render('Home');
 });
 
 Route::get('/login', [AuthController::class, 'login']);

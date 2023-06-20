@@ -28,7 +28,6 @@ const Navbar = () => {
         document.addEventListener("mousedown", checkIfClickedOutside)
 
         return () => {
-            console.log('unmount')
             document.removeEventListener("mousedown", checkIfClickedOutside)
         }
     }, [isToggle])
