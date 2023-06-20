@@ -1,7 +1,8 @@
-import { Link } from "@inertiajs/react";
+import { Link, router } from "@inertiajs/react";
 import { useState } from "react";
 
-export default function Login() {
+// router.post('/login', { _token: this.$page.props.csrf_token, })
+export default function Login({ csrf_token }) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
@@ -15,7 +16,8 @@ export default function Login() {
             </h1>
             <div className="border border-primary rounded-lg w-5/6 lg:w-1/2 p-4 lg:px-24 lg:py-16 my-2">
                 <h1 className="text-center font-bold text-xl">Masuk</h1>
-                <form className="flex flex-col p-8 justify-evenly ">
+                <form action="/login" method="post" className="flex flex-col p-8 justify-evenly ">
+                    <input type="hidden" name="_token" value={csrf_token} />
                     <div className="w-full flex flex-row items-center px-2 border border-solid border-slate-700 rounded-lg my-2">
                         <img
                             className="h-8 relative"
@@ -24,7 +26,7 @@ export default function Login() {
                         />
                         <input
                             className="p-2 my-2 w-full !outline-none"
-                            name="user_name"
+                            name="username"
                             type="text"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
