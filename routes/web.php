@@ -19,24 +19,15 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    return Inertia::render('Home');
+    return Inertia::render('Dashboard');
 });
 
 Route::get('/login', [AuthController::class, 'login']);
 Route::post('/login', [AuthController::class, 'doLogin']);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
-Route::get('/register', [RegisterController::class, 'index']);
-Route::post('/register', [RegisterController::class, 'store']);
-
->>>>>>> 714632a (menambahkan fitur register dan memperbaiki penggunaan session)
 Route::get('/forum', function () {
     return Inertia::render('Forum');
 });
->>>>>>> bac8a57 (menambahkan notif gagal login)
 
 // Route::post('/register', function ($id) {
 // });
