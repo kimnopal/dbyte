@@ -1,7 +1,7 @@
 import Footer from "../Components/Footer";
 import Navbar from "../Components/Navbar";
 
-const GuestLayout = ({ children, auth }) => {
+const Layout = ({ children, auth }) => {
     return (
         <>
             <Navbar auth={auth} />
@@ -15,4 +15,4 @@ const GuestLayout = ({ children, auth }) => {
     );
 }
 
-export default GuestLayout;
+export default Layout;

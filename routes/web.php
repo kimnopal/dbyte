@@ -29,6 +29,7 @@ Route::middleware(['guest'])->group(function () {
     Route::post('/register', [RegisterController::class, 'store']);
 });
 
+Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth');
 
 Route::get('/forum', [ForumController::class, 'index']);
 

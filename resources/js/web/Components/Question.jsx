@@ -1,7 +1,6 @@
 import { Link } from "@inertiajs/react";
 
 const Question = ({ question }) => {
-
     return (
         <div className="w-full flex flex-col border-2 border-secondary px-4 py-4 rounded-lg">
             <div className="flex flex-col lg:flex-row gap-y-2">

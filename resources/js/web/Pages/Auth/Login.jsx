@@ -1,4 +1,4 @@
-import { Link, useForm, usePage } from "@inertiajs/react";
+import { Head, Link, useForm, usePage } from "@inertiajs/react";
 import { useState } from "react";
 
 // router.post('/login', { _token: this.$page.props.csrf_token, })
@@ -17,6 +17,7 @@ export default function Login({ csrf_token, session }) {
 
     return (
         <div className="flex flex-col w-full min-h-screen items-center my-8 ">
+            <Head title="Login" />
             <img className="w-24 my-2" src="/images/dByteRounded.png" alt="" />
             <h1 className="text-center font-bold text-xl my-2">
                 Tunggu Apalagi?

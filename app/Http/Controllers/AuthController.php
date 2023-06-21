@@ -35,4 +35,12 @@ class AuthController extends Controller
 
         return back()->with('error', 'Username atau password tidak sesuai, silahkan masukkan dengan benar');
     }
+
+    public function logout(Request $request): RedirectResponse
+    {
+        Auth::logout();
+        $request->session()->regenerate();
+        $request->session()->regenerateToken();
+        return redirect('/forum');
+    }
 }

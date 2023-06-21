@@ -13,7 +13,6 @@ class HomeController extends Controller
      */
     public function __invoke(Request $request)
     {
-
         return Inertia::render('Home', [
             'majors' => Major::withCount('questions')->get()->sortByDesc('questions_count')->values()->all(),
         ]);
