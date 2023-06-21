@@ -1,0 +1,28 @@
+[
+    {
+        "id": "1",
+        "person": {
+            "name": "Ferry Cuy",
+            "major": "Teknik Elektro",
+            "profile": "/images/profile.png",
+            "school": "Universitas Jenderal Soedirman"
+        },
+        "answer": {
+            "answer": "GPT ae cuy",
+            "date": "1 Juni 2023"
+        }
+    },
+    {
+        "id": "1",
+        "person": {
+            "name": "Vido",
+            "major": "Teknik Elektro",
+            "profile": "/images/profile.png",
+            "school": "Universitas Jenderal Soedirman"
+        },
+        "answer": {
+            "answer": "Cek grup rehab lur",
+            "date": "1 Juni 2023"
+        }
+    }
+]
