@@ -3,12 +3,12 @@ import Hero from "../Components/Hero";
 import Major from "../Components/MajorList";
 import GuestLayout from "../Layouts/GuestLayout";
 
-const Home = () => {
+const Home = ({ majors }) => {
     return (
         <>
             <GuestLayout>
                 <Hero />
-                <Major />
+                <Major majors={majors} />
                 <About />
             </GuestLayout>
         </>
