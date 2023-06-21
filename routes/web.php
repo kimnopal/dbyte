@@ -17,7 +17,7 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    return Inertia::render('Task');
+    return Inertia::render('Dashboard');
 });
 
 Route::get('/dashboard', function () {

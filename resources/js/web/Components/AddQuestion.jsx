@@ -1,7 +1,10 @@
 import { Link } from "@inertiajs/react";
 import Major from "./Major";
+import { useState } from "react";
+import Ask from "./Ask";
 
 export default function AddQuestion() {
+    const [ask, setAsk] = useState(false);
     return (
         <section className="px-4 pt-16 pb-6 md:pb-12 flex flex-col gap-y-3">
             <form action="">
@@ -13,12 +16,13 @@ export default function AddQuestion() {
             </form>
             <Major />
             <Link className="text-center w-full">Lebih banyak jurusan...</Link>
-            <Link
-                href="#"
-                className="bg-primary text-white rounded-lg py-2 px-4 w-56 text-center"
+            <button
+                className="bg-primary text-white rounded-lg py-2 px-4 w-full lg:w-fit text-center"
+                onClick={() => setAsk(!ask)}
             >
                 + Ajukan Pertanyaan
-            </Link>
+            </button>
+            {ask ? <Ask /> : null}
         </section>
     );
 }
