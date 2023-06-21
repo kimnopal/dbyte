@@ -1,10 +1,10 @@
 import Footer from "../Components/Footer";
 import Navbar from "../Components/Navbar";
 
-const GuestLayout = ({ children }) => {
+const GuestLayout = ({ children, auth }) => {
     return (
         <>
-            <Navbar />
+            <Navbar auth={auth} />
             <div className="md:max-w-[865px] m-auto">
                 <main>
                     {children}
