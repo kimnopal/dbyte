@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -32,8 +33,15 @@ class Question extends Model
         return $this->belongsTo(Major::class);
     }
 
-    public function getCreatedAtAttribute($value)
+    // public function getCreatedAtAttribute($value)
+    // {
+    //     return Carbon::parse($value)->diffForHumans();
+    // }
+
+    protected function createdAt(): Attribute
     {
-        return Carbon::parse($value)->diffForHumans();
+        return Attribute::make(
+            get: fn (string $value) => Carbon::parse($value)->diffForHumans(),
+        );
     }
 }
