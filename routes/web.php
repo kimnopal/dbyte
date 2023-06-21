@@ -17,7 +17,7 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    return Inertia::render('Profile');
+    return Inertia::render('Task');
 });
 
 Route::get('/dashboard', function () {
