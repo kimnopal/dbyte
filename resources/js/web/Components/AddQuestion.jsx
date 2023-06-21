@@ -1,7 +1,7 @@
 import { Link } from "@inertiajs/react";
-import Major from "./Major";
+import MajorList from "./MajorList";
 
-export default function AddQuestion() {
+export default function AddQuestion({ majors }) {
     return (
         <section className="px-4 pt-16 pb-6 md:pb-12 flex flex-col gap-y-3">
             <form action="">
@@ -11,7 +11,7 @@ export default function AddQuestion() {
                     placeholder="Tulis pertanyaanmu..."
                 />
             </form>
-            <Major />
+            <MajorList majors={majors} />
             <Link className="text-center w-full">Lebih banyak jurusan...</Link>
             <Link
                 href="#"

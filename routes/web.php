@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ForumController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Foundation\Application;
@@ -22,15 +23,15 @@ Route::get('/', function () {
     return Inertia::render('Home');
 });
 
-Route::get('/login', [AuthController::class, 'login'])->middleware('guest')->name('login');
-Route::post('/login', [AuthController::class, 'doLogin'])->middleware('guest');
+Route::middleware(['guest'])->group(function () {
+    Route::get('/login', [AuthController::class, 'login'])->name('login');
+    Route::post('/login', [AuthController::class, 'doLogin']);
+    Route::get('/register', [RegisterController::class, 'index']);
+    Route::post('/register', [RegisterController::class, 'store']);
+});
 
-Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
-Route::post('/register', [RegisterController::class, 'store'])->middleware('guest');
 
-Route::get('/forum', function () {
-    return Inertia::render('Forum');
-})->middleware('auth');
+Route::get('/forum', [ForumController::class, 'index']);
 
 // Route::post('/register', function ($id) {
 // });

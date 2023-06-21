@@ -1,14 +1,13 @@
 import AddQuestion from "../Components/AddQuestion";
 import Questions from "../Components/Questions";
 import GuestLayout from "../Layouts/GuestLayout";
-import DummyData from "../data/dummyquestion.json";
 
-export default function Dashboard() {
-    const data = DummyData;
+export default function Forum({ questions, majors }) {
+    console.log(questions)
     return (
         <GuestLayout>
-            <AddQuestion />
-            <Questions data={data} />
+            <AddQuestion majors={majors} />
+            <Questions questions={questions} />
         </GuestLayout>
     );
 }
