@@ -13,7 +13,6 @@ class AuthController extends Controller
 {
     public function login(): Response
     {
-        // dd(csrf_token());
         return Inertia::render('Auth/Login', [
             'csrf_token' => csrf_token()
         ]);
@@ -25,8 +24,6 @@ class AuthController extends Controller
             'username' => ['required'],
             'password' => ['required'],
         ]);
-
-        // dd(Auth::attempt($credentials));
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
