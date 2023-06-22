@@ -30,9 +30,9 @@ Route::middleware(['guest'])->group(function () {
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth');
-// Route::post('/search', )
 
-Route::get('/forum', [ForumController::class, 'index']);
+Route::get('/forum', [ForumController::class, 'index'])->name('forum');
+Route::get('/forum/{major}', [ForumController::class, 'filter']);
 Route::post('/forum/search', [ForumController::class, 'search']);
 
 // Route::post('/register', function ($id) {

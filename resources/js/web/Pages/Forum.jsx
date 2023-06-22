@@ -5,19 +5,16 @@ import Layout from "../Layouts/Layout";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-export default function Forum({ majors, auth }) {
+export default function Forum({ majors, major, auth }) {
     const [questions, setQuestions] = useState([])
-    const { data, setData, post } = useForm({
-        search: ''
+    const { data, setData } = useForm({
+        search: '',
+        filter: ''
     })
 
-    // useEffect(() => {
-    //     async function fetchData() {
-    //         const questions = (await axios.post('/forum/search', data)).data
-    //         setQuestions(await questions)
-    //     }
-    //     fetchData()
-    // }, [])
+    useEffect(() => {
+        if (major) setData('filter', major.id)
+    }, [])
 
     useEffect(() => {
         async function fetchQuestions() {
