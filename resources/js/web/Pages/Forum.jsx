@@ -12,7 +12,7 @@ export default function Forum({ majors, questions, auth }) {
 
     const handleChange = (e) => {
         setData('search', e.target.value)
-        router.get(route(route().current(), route().params), { search: e.target.value }, { preserveState: true })
+        router.get(route(route().current(), route().params), { page: 1, search: e.target.value }, { preserveState: true })
     }
 
     const paginationLinks = (maxShow) => {
@@ -58,8 +58,6 @@ export default function Forum({ majors, questions, auth }) {
         //     })
         // }
     }
-
-    console.log(questions)
 
     return (
         <Layout auth={auth}>
