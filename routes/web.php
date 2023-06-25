@@ -33,6 +33,7 @@ Route::get('/', function () {
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth');
+// Route::post('/search', )
 
 Route::get('/forum', [ForumController::class, 'index'])->name('forum');
 Route::get('/forum/{major}', [ForumController::class, 'index'])->name('forum.major');

@@ -63,6 +63,7 @@ export default function Forum({ majors, questions, auth }) {
         <Layout auth={auth}>
             <Head title="Forum" />
             <AddQuestion majors={majors} handleChange={handleChange} />
+<<<<<<< HEAD
             <Questions questions={questions.data} />
             <div className="flex flex-wrap gap-3 px-4 pb-12">
                 {/* {questions.links.map((link, index) => (
@@ -72,5 +73,9 @@ export default function Forum({ majors, questions, auth }) {
                 {questions.data.length != 0 && paginationLinks(3)}
             </div>
         </Layout >
+=======
+            <Questions questions={questions} />
+        </Layout>
+>>>>>>> 0d44be5 (resolve conflict)
     );
 }
