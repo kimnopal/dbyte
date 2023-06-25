@@ -20,6 +20,7 @@ use Inertia\Inertia;
 |
 */
 
+<<<<<<< HEAD
 Route::get('/', HomeController::class);
 
 Route::middleware(['guest'])->group(function () {
@@ -27,6 +28,10 @@ Route::middleware(['guest'])->group(function () {
     Route::post('/login', [AuthController::class, 'doLogin']);
     Route::get('/register', [RegisterController::class, 'index']);
     Route::post('/register', [RegisterController::class, 'store']);
+=======
+Route::get('/', function () {
+    return Inertia::render('Auth/Login');
+>>>>>>> 45a76fa (menyelesaikan halaman login dan register)
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth');
