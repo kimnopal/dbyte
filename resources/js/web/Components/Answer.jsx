@@ -2,7 +2,7 @@ const Answer = ({ answers }) => {
     return (
         <>
             {answers.map(answer => (
-                <div className="flex flex-col w-11/12 lg:w-full my-6 gap-y-3 pl-8 mx-auto">
+                <div key={answer.id} className="flex flex-col w-11/12 lg:w-full my-6 gap-y-3 pl-8 mx-auto">
                     <div className="flex items-center gap-2 flex-wrap">
                         <img className="w-8 h-8" src="/images/profile.png" alt="" />
                         <h1 className="font-bold text-xl">{answer.user.username}</h1>

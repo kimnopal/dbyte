@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -30,15 +31,10 @@ Route::middleware(['guest'])->group(function () {
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth');
-// Route::post('/search', )
 
-Route::get('/forum', [ForumController::class, 'index'])->name('forum');
-Route::get('/forum/{major}', [ForumController::class, 'index'])->name('forum.major');
-Route::get('/forum/question/{question}', [ForumController::class, 'show']);
+Route::resource('/forum', QuestionController::class)->parameters(['forum' => 'question']);
 
 Route::get('/profile', [ProfileController::class, 'index']);
-// Route::post('/register', function ($id) {
-// });
 
 // Route::get('/dashboard', function () {
 //     return Inertia::render('Dashboard');

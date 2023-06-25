@@ -2,8 +2,6 @@ import { Head, Link, router, useForm, usePage } from "@inertiajs/react";
 import AddQuestion from "../Components/AddQuestion";
 import Questions from "../Components/Questions";
 import Layout from "../Layouts/Layout";
-import axios from "axios";
-import { useEffect, useState } from "react";
 
 export default function Forum({ majors, questions, auth }) {
     const { data, setData } = useForm({
@@ -12,7 +10,9 @@ export default function Forum({ majors, questions, auth }) {
 
     const handleChange = (e) => {
         setData('search', e.target.value)
-        router.get(route(route().current(), route().params), { page: 1, search: e.target.value }, { preserveState: true })
+        let data = { page: 1, search: e.target.value }
+        if (route().params.major) data['major'] = route().params.major
+        router.get(route(route().current()), data, { preserveState: true })
     }
 
     const paginationLinks = (maxShow) => {

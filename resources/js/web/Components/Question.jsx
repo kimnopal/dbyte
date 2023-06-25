@@ -36,7 +36,7 @@ const Question = ({ question }) => {
                     {question.created_at}
                 </span>
                 <Link
-                    href={`/forum/question/${question.slug}`}
+                    href={`/forum/${question.slug}`}
                     className="font-bold bg-primary text-white rounded-lg py-2 px-4 w-fit"
                 >
                     Jawab
