@@ -37,7 +37,7 @@ const Question = ({ question }) => {
                 </span>
                 <Link
                     href="#"
-                    className="font-bold bg-primary text-white rounded-lg py-2 px-4"
+                    className="font-bold bg-primary text-white rounded-lg py-2 px-4 w-fit"
                 >
                     Jawab
                 </Link>

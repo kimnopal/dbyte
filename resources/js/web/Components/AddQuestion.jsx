@@ -14,12 +14,13 @@ export default function AddQuestion({ majors, handleChange }) {
             </form>
             <MajorList majors={majors} />
             <Link className="text-center w-full">Lebih banyak jurusan...</Link>
-            <Link
-                href="#"
-                className="bg-primary text-white rounded-lg py-2 px-4 w-56 text-center"
+            <button
+                className="bg-primary text-white rounded-lg py-2 px-4 w-full lg:w-fit text-center"
+                onClick={() => setAsk(!ask)}
             >
                 + Ajukan Pertanyaan
-            </Link>
+            </button>
+            {ask ? <Ask /> : null}
         </section>
     );
 }
