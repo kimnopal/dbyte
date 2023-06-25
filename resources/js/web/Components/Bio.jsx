@@ -1,6 +1,7 @@
 import { Link } from "@inertiajs/react";
 
-const Bio = () => {
+const Bio = ({ user }) => {
+    console.log(user)
     return (
         <section className="flex flex-col lg:flex-row px-4 pt-20 pb-6 md:pb-12 gap-y-3">
             <div className="w-full lg:w-3/5 flex flex-col gap-y-2">
@@ -11,9 +12,9 @@ const Bio = () => {
                         alt=""
                     />
                     <div className="flex flex-col gap-2 justify-center">
-                        <h1 className="font-bold text-2xl">Bagus Andhika</h1>
+                        <h1 className="font-bold text-2xl">{user.username}</h1>
                         <div className="flex flex-row gap-4 items-center">
-                            <h2 className="font-">Kayu</h2>
+                            <h2 className="font-">{user.badge ?? 'Unranked'}</h2>
                             <Link
                                 className="bg-primary text-white px-3 py-1 rounded-lg"
                                 href="#"
@@ -23,13 +24,13 @@ const Bio = () => {
                         </div>
                     </div>
                 </div>
-                <span className="text-sm text-secondary">Teknik Elektro</span>
+                <span className="text-sm text-secondary">{user.major.name}</span>
                 <span className="text-sm text-secondary">
-                    Universitas Jenderal Soedirman
+                    {user.university.name}
                 </span>
             </div>
             <div className="w-full lg:w-2/5 border border-secondary p-4 rounded-lg">
-                <p>Malu bertanya, sesat dijalan.</p>
+                <p>{user.description}</p>
             </div>
         </section>
     );

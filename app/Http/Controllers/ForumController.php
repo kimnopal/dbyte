@@ -14,12 +14,11 @@ class ForumController extends Controller
     {
         return Inertia::render('Forum', [
             'majors' => Major::withCount('questions')->get()->sortByDesc('questions_count')->values()->all(),
-            'questions' => Question::with(['answers', 'user', 'university', 'major'])
-                ->when($request->input('search'), function ($query, $search) {
-                    $query->where('content', 'like', '%' . $search . '%');
-                })->when($major->id, function ($query) use ($major) {
-                    $query->where('major_id', $major->id);
-                })->paginate(1)->withQueryString()
+            'questions' => Question::when($request->input('search'), function ($query, $search) {
+                $query->where('content', 'like', '%' . $search . '%');
+            })->when($major->id, function ($query) use ($major) {
+                $query->where('major_id', $major->id);
+            })->paginate(1)->withQueryString()
         ]);
     }
 
@@ -28,5 +27,12 @@ class ForumController extends Controller
         $search = $request->input('search');
         return response()->json(Question::with(['answers', 'user', 'university', 'major'])->where('content', 'LIKE', '%' . $search . '%')->get());
         // return $search;
+    }
+
+    function show(Request $request, Question $question): Response
+    {
+        return Inertia::render('Task', [
+            'question' => $question
+        ]);
     }
 }

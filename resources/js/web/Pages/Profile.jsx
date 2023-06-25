@@ -2,11 +2,11 @@ import Achievements from "../Components/Achievements";
 import Bio from "../Components/Bio";
 import Layout from "../Layouts/Layout";
 
-const Profile = ({ auth }) => {
+const Profile = ({ auth, user }) => {
     return (
         <Layout auth={auth}>
-            <Bio />
-            <Achievements />
+            <Bio user={user} />
+            <Achievements user={user} />
         </Layout>
     );
 };

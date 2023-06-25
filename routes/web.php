@@ -34,10 +34,9 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth');
 
 Route::get('/forum', [ForumController::class, 'index'])->name('forum');
 Route::get('/forum/{major}', [ForumController::class, 'index'])->name('forum.major');
+Route::get('/forum/question/{question}', [ForumController::class, 'show']);
 
-Route::get('/profile', function () {
-    return Inertia::render('Profile');
-});
+Route::get('/profile', [ProfileController::class, 'index']);
 // Route::post('/register', function ($id) {
 // });
 

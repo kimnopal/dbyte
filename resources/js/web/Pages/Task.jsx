@@ -1,15 +1,16 @@
-import GuestLayout from "../Layouts/GuestLayout";
+import Layout from "../Layouts/Layout";
 import Answer from "../Components/Answer";
 import Asked from "../Components/Asked";
 import Answering from "../Components/Answering";
 
-const Task = () => {
+const Task = ({ auth, question }) => {
+    console.log(question)
     return (
-        <GuestLayout>
-            <Asked />
-            <Answer />
+        <Layout auth={auth}>
+            <Asked question={question} />
+            <Answer answers={question.answers} />
             <Answering />
-        </GuestLayout>
+        </Layout>
     );
 };
 

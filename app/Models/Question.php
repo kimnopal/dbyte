@@ -13,6 +13,8 @@ class Question extends Model
 {
     use HasFactory;
 
+    protected $with = ['answers' => ['user' => ['major', 'university']], 'user', 'university', 'major'];
+
     public function answers(): HasMany
     {
         return $this->hasMany(Answer::class);
@@ -33,15 +35,15 @@ class Question extends Model
         return $this->belongsTo(Major::class);
     }
 
-    // public function getCreatedAtAttribute($value)
-    // {
-    //     return Carbon::parse($value)->diffForHumans();
-    // }
-
     protected function createdAt(): Attribute
     {
         return Attribute::make(
             get: fn (string $value) => Carbon::parse($value)->diffForHumans(),
         );
+    }
+
+    function getRouteKeyName(): string
+    {
+        return 'slug';
     }
 }
