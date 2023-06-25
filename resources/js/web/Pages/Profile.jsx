@@ -1,13 +1,13 @@
 import Achievements from "../Components/Achievements";
 import Bio from "../Components/Bio";
-import GuestLayout from "../Layouts/GuestLayout";
+import Layout from "../Layouts/Layout";
 
-const Profile = () => {
+const Profile = ({ auth }) => {
     return (
-        <GuestLayout>
+        <Layout auth={auth}>
             <Bio />
             <Achievements />
-        </GuestLayout>
+        </Layout>
     );
 };
 

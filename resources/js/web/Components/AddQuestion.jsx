@@ -1,7 +1,11 @@
 import { Link } from "@inertiajs/react";
 import MajorList from "./MajorList";
+import Ask from "./Ask";
+import { useState } from "react";
+
 
 export default function AddQuestion({ majors, handleChange }) {
+    const [ask, setAsk] = useState(false);
     return (
         <section className="px-4 pt-16 pb-6 md:pb-12 flex flex-col gap-y-3">
             <form>

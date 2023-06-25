@@ -29,7 +29,7 @@ const NavProfile = () => {
                 <img src="/images/profile.png" alt="" />
             </div>
             <div className={`${isToggle ? 'visible !h-auto md:!opacity-100 md:!top-[130%]' : 'invisible'} h-0 flex flex-col items-center md:transition-all md:!h-auto md:opacity-0 md:rounded-md md:bg-white md:shadow-lg md:border md:border-secondary md:absolute md:top-[110%] md:right-0`}>
-                <Link className="text-lg text-primary font-medium px-10 py-[6px]">Profil</Link>
+                <Link href="/profile" className="text-lg text-primary font-medium px-10 py-[6px]">Profil</Link>
                 <form onSubmit={submit}>
                     <button type="submit" className="text-lg text-primary font-medium px-10 py-[6px]">Logout</button>
                 </form>

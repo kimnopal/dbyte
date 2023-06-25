@@ -28,9 +28,6 @@ Route::middleware(['guest'])->group(function () {
     Route::get('/register', [RegisterController::class, 'index']);
     Route::post('/register', [RegisterController::class, 'store']);
 });
-Route::get('/', function () {
-    return Inertia::render('Dashboard');
-});
 
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth');
 // Route::post('/search', )
@@ -38,6 +35,9 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth');
 Route::get('/forum', [ForumController::class, 'index'])->name('forum');
 Route::get('/forum/{major}', [ForumController::class, 'index'])->name('forum.major');
 
+Route::get('/profile', function () {
+    return Inertia::render('Profile');
+});
 // Route::post('/register', function ($id) {
 // });
 
