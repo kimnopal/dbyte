@@ -75,4 +75,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Answer::class, 'votes');
     }
+
+    function getRouteKeyName(): string
+    {
+        return 'username';
+    }
 }
