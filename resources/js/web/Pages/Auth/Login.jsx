@@ -28,19 +28,13 @@ export default function Login({ csrf_token, session }) {
             {session.success && <p className="w-5/6 text-white font-normal text-sm text-center mb-2 bg-green-500 px-4 py-2 rounded-lg md:text-base lg:w-1/2">{session.success}</p>}
             <div className="border border-primary rounded-lg w-5/6 lg:w-1/2 p-4 lg:px-24 lg:py-16 my-2">
                 <h1 className="text-center font-bold text-xl">Masuk</h1>
-<<<<<<< HEAD
                 <form className="flex flex-col p-8 justify-evenly" onSubmit={submit}>
                     <input type="hidden" name="_token" value={csrf_token} />
                     <div className={`w-full flex flex-row items-center px-2 border border-solid ${errors.username ? 'border-red-500' : 'border-primary'} rounded-lg my-2`}>
-=======
-                <form className="flex flex-col p-8 justify-evenly ">
-                    <div className="w-full flex flex-row items-center px-2 border border-solid border-slate-700 rounded-lg my-2">
->>>>>>> 45a76fa (menyelesaikan halaman login dan register)
                         <img
                             className="h-8 relative"
                             src="/images/profile.png"
                             alt=""
-<<<<<<< HEAD
                         />
                         <input
                             className="p-2 my-2 w-full !outline-none"
@@ -63,27 +57,6 @@ export default function Login({ csrf_token, session }) {
                         />
                         <input
                             className="p-2 my-2 w-full !outline-none"
-=======
-                        />
-                        <input
-                            className="p-2 my-2 w-full !outline-none"
-                            name="user_name"
-                            type="text"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
-                            placeholder="Username"
-                        />
-                    </div>
-
-                    <div className="w-full flex flex-row items-center px-2 border border-solid border-slate-700 rounded-lg my-2">
-                        <img
-                            className="h-8 relative"
-                            src="/images/profile.png"
-                            alt=""
-                        />
-                        <input
-                            className="p-2 my-2 w-full !outline-none"
->>>>>>> 45a76fa (menyelesaikan halaman login dan register)
                             name="password"
                             type="password"
                             value={data.password}
