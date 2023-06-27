@@ -47,7 +47,7 @@ const Navbar = ({ auth }) => {
                             <Link href="/forum" className="text-lg text-primary font-semibold py-2 mx-5 md:mx-0">FORUM</Link>
                             {auth.user ?
                                 <>
-                                    <NavProfile />
+                                    <NavProfile auth={auth} />
                                 </>
                                 :
                                 <>

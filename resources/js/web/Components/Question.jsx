@@ -6,8 +6,8 @@ const Question = ({ question }) => {
             <div className="flex flex-col lg:flex-row gap-y-2">
                 <div className="flex flex-row gap-y-1 lg:flex-col gap-2 w-full lg:w-2/6 items-center lg:items-start">
                     <img
-                        className="w-12 h-12"
-                        src={question.user.photo}
+                        className="w-12 h-12 rounded-full"
+                        src={`/images/${question.user.photo}`}
                         alt=""
                     />
                     <div className="flex flex-col">

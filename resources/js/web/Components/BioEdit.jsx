@@ -1,30 +1,39 @@
-import { Link, useForm, usePage } from "@inertiajs/react";
+import { Link, router, useForm, usePage } from "@inertiajs/react";
 
 const BioEdit = ({ user, universities }) => {
-    const { data, setData, put } = useForm({
+    const { data, setData, post } = useForm({
         username: user.username,
-        photo: user.photo,
         photo: user.photo,
         university_id: user.university_id,
         major_id: user.major_id,
-        description: user.description
+        description: user.description,
+        _method: 'put',
     })
 
     const submit = (e) => {
         e.preventDefault()
-        put(`/profile/${user.username}`)
+        // const formData = new FormData()
+        // formData.append('username', data.username)
+        // formData.append('photo', data.photo)
+        // formData.append('university_id', data.university_id)
+        // formData.append('major_id', data.major_id)
+        // formData.append('description', data.description)
+        // post(`/profile/${user.username}`, { forceFormData: true })
+        post(`/profile/${user.username}`)
+        // router.post(`/profile/${user.username}`, data, { _method: 'put', forceFormData: true })
     }
-    console.log(universities)
     console.log(data)
+    console.log(usePage().props.errors)
 
     return (
         <section className=" px-4 pt-20 pb-6 md:pb-12">
             <form onSubmit={submit} className="flex flex-col lg:flex-row gap-y-3">
                 <div className="w-full lg:w-3/5 flex flex-col gap-y-2">
+                    <input name="_method" type="hidden" value="PUT" />
                     <div className="w-full flex flex-row gap-4">
                         <img
-                            className="w-24 h-24"
-                            src="/images/profile.png"
+                            className="w-24 h-24 rounded-full"
+                            src={`/images/${user.photo}`}
                             alt=""
                         />
                         <div className="flex flex-col gap-2 justify-center">
@@ -32,10 +41,10 @@ const BioEdit = ({ user, universities }) => {
                                 type="text"
                                 className="border border-secondary px-2 py-1 rounded-md"
                                 placeholder="Username"
-                                defaultValue={data.username}
+                                value={data.username}
                                 onChange={(e) => setData('username', e.target.value)}
                             />
-                            <input type="file" />
+                            <input type="file" onChange={(e) => setData('photo', e.target.files[0])} />
                         </div>
                     </div>
                     <div className="w-full lg:w-5/12 flex flex-row justify-between items-center">
