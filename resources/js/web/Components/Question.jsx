@@ -15,10 +15,10 @@ const Question = ({ question }) => {
                             {question.user.username}
                         </h1>
                         <span className="text-secondary text-xs">
-                            {question.major.name}{" "}
+                            {question.user.major.name}{" "}
                         </span>
                         <span className="text-secondary text-xs">
-                            {question.university.name}
+                            {question.user.university.name}
                         </span>
                     </div>
                 </div>
@@ -26,6 +26,15 @@ const Question = ({ question }) => {
                     <h1 className="font-bold text-lg">
                         {question.content}{" "}
                     </h1>
+                    <div className="flex items-center gap-3">
+                        <span className="text-secondary">
+                            {question.university.name}
+                        </span>
+                        <div className="w-[5px] h-[5px] rounded-full bg-secondary"></div>
+                        <span className="text-secondary">
+                            {question.major.name}
+                        </span>
+                    </div>
                     <span className="text-secondary">
                         {question.answers.length} orang telah menjawab
                     </span>

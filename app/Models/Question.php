@@ -13,7 +13,7 @@ class Question extends Model
 {
     use HasFactory;
 
-    protected $with = ['answers' => ['user' => ['major', 'university']], 'user', 'university', 'major'];
+    protected $with = ['answers' => ['user' => ['major', 'university']], 'user' => ['major', 'university'], 'university', 'major'];
 
     public function answers(): HasMany
     {

@@ -56,18 +56,6 @@ class ProfileController extends Controller
             $validatedData['photo'] = $request->file('photo')->store('profiles');
         }
 
-        $questionsUpdate = [];
-
-        if ($request->university_id != $user->university_id) {
-            $questionsUpdate['university_id'] = $request->university_id;
-        }
-
-        if ($request->major_id != $user->major_id) {
-            $questionsUpdate['major_id'] = $request->major_id;
-        }
-
-        Question::where('user_id', $user->id)->update($questionsUpdate);
-
         User::where('id', $user->id)->update($validatedData);
 
         return redirect('/profile')->with('success', 'Profil berhasil diperbarui');
