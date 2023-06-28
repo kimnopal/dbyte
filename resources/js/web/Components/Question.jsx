@@ -15,10 +15,10 @@ const Question = ({ question }) => {
                             {question.user.username}
                         </h1>
                         <span className="text-secondary text-xs">
-                            {question.user.major.name}{" "}
+                            {question.user.major ? question.user.major.name : 'Belum Dipilih'}{" "}
                         </span>
                         <span className="text-secondary text-xs">
-                            {question.user.university.name}
+                            {question.user.university ? question.user.university.name : 'Belum Dipilih'}
                         </span>
                     </div>
                 </div>

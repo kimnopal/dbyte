@@ -9,7 +9,7 @@ const Ask = ({ universities }) => {
 
     const submit = (e) => {
         e.preventDefault()
-        post('/forum')
+        post('/forum', { preserveState: false })
     }
 
     return (

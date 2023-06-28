@@ -1,4 +1,5 @@
 const Answer = ({ answers }) => {
+    console.log(answers)
     return (
         <>
             {answers.map(answer => (
@@ -7,7 +8,7 @@ const Answer = ({ answers }) => {
                         <img className="w-8 h-8" src="/images/profile.png" alt="" />
                         <h1 className="font-bold text-xl">{answer.user.username}</h1>
                         <span className="font-light text-secondary text-sm">
-                            {answer.user.major.name} - {answer.user.university.name}
+                            {answer.user.major ? answer.user.major.name : 'Belum Dipilih'} - {answer.user.university ? answer.user.university.name : 'Belum Dipilih'}
                         </span>
                     </div>
                     <div className="w-full border border-primary rounded-lg p-4 self-end">
