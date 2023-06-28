@@ -13,6 +13,8 @@ class Answer extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['content', 'user_id', 'question_id'];
+
     public function question(): BelongsTo
     {
         return $this->belongsTo(Question::class);
@@ -33,5 +35,10 @@ class Answer extends Model
         return Attribute::make(
             get: fn (string $value) => Carbon::parse($value)->diffForHumans(),
         );
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'answer';
     }
 }

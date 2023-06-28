@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\HomeController;
@@ -38,9 +39,15 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'index']);
     Route::get('/profile/{user}/edit', [ProfileController::class, 'edit']);
     Route::put('/profile/{user}', [ProfileController::class, 'update']);
+    Route::resource('/answer', AnswerController::class);
 });
 
 Route::get('/profile/{user}', [ProfileController::class, 'show']);
+
+
+
+
+
 // Route::get('/test', function () {
 //     return Inertia::render('Profile/ProfileEdit');
 // });

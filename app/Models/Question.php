@@ -44,7 +44,7 @@ class Question extends Model
         );
     }
 
-    function getRouteKeyName(): string
+    public function getRouteKeyName(): string
     {
         return 'slug';
     }

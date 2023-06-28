@@ -14,7 +14,7 @@ const Asked = ({ question }) => {
                 <img className="w-8 h-8" src="/images/profile.png" alt="" />
                 <h1 className="font-bold text-xl">{question.user.username}</h1>
                 <span className="font-light text-secondary text-sm">
-                    {question.major.name} - {question.university.name}
+                    {question.user.major.name} - {question.user.university.name}
                 </span>
             </div>
         </div>
