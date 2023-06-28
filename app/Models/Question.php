@@ -15,6 +15,8 @@ class Question extends Model
 
     protected $with = ['answers' => ['user' => ['major', 'university']], 'user' => ['major', 'university'], 'university', 'major'];
 
+    protected $fillable = ['content', 'slug', 'user_id', 'university_id', 'major_id'];
+
     public function answers(): HasMany
     {
         return $this->hasMany(Answer::class);

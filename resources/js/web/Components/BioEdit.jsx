@@ -52,7 +52,7 @@ const BioEdit = ({ user, universities }) => {
                             className="border border-primary px-4 py-2 rounded-lg text-center font-bold appearance-none"
                             name="university_id"
                             value={data.university_id || ''}
-                            onChange={(e) => setData((prevData => ({ ...prevData, university_id: e.target.value || null, major_id: null })))}
+                            onChange={(e) => setData(prevData => ({ ...prevData, university_id: e.target.value || null, major_id: null }))}
                         >
                             <option value="">Belum Dipilih</option>
                             {universities.map(university => (

@@ -24,7 +24,7 @@ const Question = ({ question }) => {
                 </div>
                 <div className="flex flex-col gap-y-4 w-full lg:w-4/6">
                     <h1 className="font-bold text-lg">
-                        {question.content}{" "}
+                        {question.content.length > 20 ? question.content.slice(0, 70) + '...' : question.content}{" "}
                     </h1>
                     <div className="flex items-center gap-3">
                         <span className="text-secondary">

@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Major;
 use App\Models\Question;
+use App\Models\University;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Inertia\Inertia;
+use illuminate\Support\Str;
 
 class QuestionController extends Controller
 {
@@ -16,12 +19,13 @@ class QuestionController extends Controller
     {
         $major = Major::firstWhere('slug', $request->input('major'));
         return Inertia::render('Forum', [
+            'universities' => University::with('majors')->get(),
             'majors' => Major::withCount('questions')->get()->sortByDesc('questions_count')->values()->all(),
             'questions' => Question::when($request->input('search'), function ($query, $search) {
                 $query->where('content', 'like', '%' . $search . '%');
             })->when($request->input('major'), function ($query) use ($major) {
                 $query->where('major_id', $major->id);
-            })->paginate(1)->withQueryString()
+            })->latest()->paginate(1)->withQueryString()
         ]);
     }
 
@@ -38,7 +42,22 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if (!auth()->user()) {
+            return to_route('login');
+        }
+
+        $validatedData = $request->validate([
+            'university_id' => 'required|exists:universities,id',
+            'major_id' => ['required', 'integer', Rule::exists('major_university')->where('university_id', $request->university_id)->where('major_id', $request->major_id)],
+            'content' => 'required'
+        ]);
+
+        $validatedData['slug'] = Str::slug(Str::words($validatedData['content'], 20, ''));
+        $validatedData['user_id'] = auth()->user()->id;
+
+        Question::create($validatedData);
+
+        return to_route('forum.index')->with('success', 'Berhasil membuat pertanyaan');
     }
 
     /**

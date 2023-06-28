@@ -14,7 +14,6 @@ const Bio = ({ user }) => {
                         <h1 className="font-bold text-2xl">{user.username}</h1>
                         <div className="flex flex-row gap-4 items-center">
                             <h2 className="font-">{user.badge ?? 'Unranked'}</h2>
-
                             {usePage().props.auth.user.id === user.id && (
                                 <Link
                                     className="bg-primary text-white px-3 py-1 rounded-lg"
