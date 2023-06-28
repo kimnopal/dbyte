@@ -34,9 +34,13 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth');
 
 Route::resource('/forum', QuestionController::class)->parameters(['forum' => 'question']);
 
-Route::get('/profile', [ProfileController::class, 'index']);
-Route::get('/profile/{user}/edit', [ProfileController::class, 'edit']);
-Route::put('/profile/{user}', [ProfileController::class, 'update']);
+Route::middleware(['auth'])->group(function () {
+    Route::get('/profile', [ProfileController::class, 'index']);
+    Route::get('/profile/{user}/edit', [ProfileController::class, 'edit']);
+    Route::put('/profile/{user}', [ProfileController::class, 'update']);
+});
+
+Route::get('/profile/{user}', [ProfileController::class, 'show']);
 // Route::get('/test', function () {
 //     return Inertia::render('Profile/ProfileEdit');
 // });

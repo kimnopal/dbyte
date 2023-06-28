@@ -1,7 +1,6 @@
-import { Link } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
 
 const Bio = ({ user }) => {
-    console.log(user)
     return (
         <section className="flex flex-col lg:flex-row px-4 pt-20 pb-6 md:pb-12 gap-y-3">
             <div className="w-full lg:w-3/5 flex flex-col gap-y-2">
@@ -15,12 +14,15 @@ const Bio = ({ user }) => {
                         <h1 className="font-bold text-2xl">{user.username}</h1>
                         <div className="flex flex-row gap-4 items-center">
                             <h2 className="font-">{user.badge ?? 'Unranked'}</h2>
-                            <Link
-                                className="bg-primary text-white px-3 py-1 rounded-lg"
-                                href={`/profile/${user.username}/edit`}
-                            >
-                                Edit profil
-                            </Link>
+
+                            {usePage().props.auth.user.id === user.id && (
+                                <Link
+                                    className="bg-primary text-white px-3 py-1 rounded-lg"
+                                    href={`/profile/${user.username}/edit`}
+                                >
+                                    Edit profil
+                                </Link>
+                            )}
                         </div>
                     </div>
                 </div>

@@ -7,6 +7,7 @@ use App\Models\University;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
@@ -23,8 +24,19 @@ class ProfileController extends Controller
         ]);
     }
 
+    public function show(User $user): Response
+    {
+        return Inertia::render('Profile', [
+            'user' => User::with(['major', 'university', 'badges', 'answers' => function ($query) {
+                $query->withCount(['voters']);
+            }])->withCount(['questions'])->find($user->id)
+        ]);
+    }
+
     public function edit(Request $request, User $user): Response
     {
+        Gate::authorize('update-profile', $user);
+
         return Inertia::render('Profile/ProfileEdit', [
             'user' => User::with(['major', 'university'])->find($user->id),
             'universities' => University::with('majors')->get()
@@ -33,6 +45,8 @@ class ProfileController extends Controller
 
     public function update(Request $request, User $user)
     {
+        Gate::authorize('update-profile', $user);
+
         $rules = [
             'university_id' => 'integer|nullable|exists:universities,id',
             'major_id' => ['integer', 'nullable', Rule::exists('major_university')->where('university_id', $request->university_id)->where('major_id', $request->major_id)],
