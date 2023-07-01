@@ -1,4 +1,3 @@
-import { Link } from "@inertiajs/react";
 import MajorList from "./MajorList";
 import Ask from "./Ask";
 import { useState } from "react";
@@ -12,7 +11,6 @@ export default function AddQuestion({ universities, majors, handleChange }) {
             <form>
                 <SearchInput handleChange={handleChange} />
             </form>
-            <MajorList majors={majors} />
             <button
                 className="bg-primary text-white rounded-lg py-2 px-4 w-full lg:w-fit text-center"
                 onClick={() => setAsk(!ask)}

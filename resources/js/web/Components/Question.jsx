@@ -1,41 +1,25 @@
 import { Link } from "@inertiajs/react";
+import SimpleProfile from "./SimpleProfile";
 
 const Question = ({ question }) => {
     return (
-        <div className="w-full flex flex-col border-2 border-secondary px-4 py-4 rounded-lg">
-            <div className="flex flex-col lg:flex-row gap-y-2">
-                <div className="flex flex-row gap-y-1 lg:flex-col gap-2 w-full lg:w-2/6 items-center lg:items-start">
-                    <img
-                        className="w-12 h-12 rounded-full"
-                        src={`/images/${question.user.photo}`}
-                        alt=""
-                    />
-                    <div className="flex flex-col">
-                        <h1 className="font-bold text-md">
-                            {question.user.username}
-                        </h1>
-                        <span className="text-secondary text-xs">
-                            {question.user.major ? question.user.major.name : 'Belum Dipilih'}{" "}
-                        </span>
-                        <span className="text-secondary text-xs">
-                            {question.user.university ? question.user.university.name : 'Belum Dipilih'}
-                        </span>
-                    </div>
-                </div>
-                <div className="flex flex-col gap-y-4 w-full lg:w-4/6">
-                    <h1 className="font-bold text-lg">
+        <div className="w-full flex flex-col border-2 border-secondary p-4 rounded-lg">
+            <div className="flex flex-col mb-4 md:flex-row gap-4 md:gap-6">
+                <SimpleProfile user={question.user} />
+                <div className="w-full flex flex-col gap-3 lg:w-4/6">
+                    <Link href={`/forum/${question.slug}`} className="font-semibold text-xl text-justify">
                         {question.content.length > 20 ? question.content.slice(0, 70) + '...' : question.content}{" "}
-                    </h1>
-                    <div className="flex items-center gap-3">
-                        <span className="text-secondary">
+                    </Link>
+                    <div className="flex flex-col gap-1 md:flex-row md:items-center md:gap-3">
+                        <Link href={`/forum?university=${question.university.name}`} className="text-secondary text-sm w-fit md:text-base">
                             {question.university.name}
-                        </span>
-                        <div className="w-[5px] h-[5px] rounded-full bg-secondary"></div>
-                        <span className="text-secondary">
+                        </Link>
+                        <div className="hidden w-[5px] h-[5px] rounded-full bg-secondary md:block"></div>
+                        <Link href={`/forum?major=${question.major.name}`} className="text-secondary text-sm w-fit md:text-base">
                             {question.major.name}
-                        </span>
+                        </Link>
                     </div>
-                    <span className="text-secondary">
+                    <span className="text-secondary text-sm md:text-base">
                         {question.answers.length} orang telah menjawab
                     </span>
                 </div>
