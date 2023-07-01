@@ -64,7 +64,7 @@ export default function AddQuestion({ universities, onChangeSearch }) {
                 </div>
             </form>
             <button
-                className="bg-primary text-white rounded-lg py-2 px-4 w-full lg:w-fit text-center"
+                className="bg-primary text-white text-center rounded-lg py-2 px-4 w-full md:w-fit"
                 onClick={() => setAsk(!ask)}
             >
                 + Ajukan Pertanyaan
