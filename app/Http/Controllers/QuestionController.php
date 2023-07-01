@@ -17,14 +17,16 @@ class QuestionController extends Controller
      */
     public function index(Request $request)
     {
+        $university = University::firstWhere('slug', $request->input('university'));
         $major = Major::firstWhere('slug', $request->input('major'));
         return Inertia::render('Forum', [
             'universities' => University::with('majors')->get(),
-            'majors' => Major::withCount('questions')->get()->sortByDesc('questions_count')->values()->all(),
             'questions' => Question::when($request->input('search'), function ($query, $search) {
                 $query->where('content', 'like', '%' . $search . '%');
+            })->when($request->input('university'), function ($query) use ($university) {
+                $query->where('university_id', $university?->id);
             })->when($request->input('major'), function ($query) use ($major) {
-                $query->where('major_id', $major->id);
+                $query->where('major_id', $major?->id);
             })->latest()->paginate(1)->withQueryString()
         ]);
     }

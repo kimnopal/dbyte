@@ -1,4 +1,4 @@
-const DropdownInput = ({ datas, label, name, error, value, setData, onChange }) => {
+const DropdownInput = ({ datas, label, name, error, value, onChange }) => {
     return (
         <div className="w-full md:w-auto">
             <div className="flex flex-col gap-2 justify-between mb-2 md:flex-row md:gap-4 md:items-center">
