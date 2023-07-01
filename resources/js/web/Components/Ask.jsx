@@ -1,4 +1,5 @@
 import { useForm } from "@inertiajs/react";
+import DropdownInput from "./DropdownInput";
 
 const Ask = ({ universities }) => {
     const { data, setData, post, errors } = useForm({
@@ -9,8 +10,11 @@ const Ask = ({ universities }) => {
 
     const submit = (e) => {
         e.preventDefault()
-        post('/forum', { preserveState: false })
+        post('/forum', { preserveState: true })
     }
+
+    const handleChangeUniversity = (e) => setData(prevData => ({ ...prevData, university_id: e.target.value, major_id: '' }))
+    const handleChangeMajor = (e) => setData('major_id', e.target.value)
 
     return (
         <form onSubmit={submit} className="w-full flex flex-col gap-3">
@@ -20,57 +24,33 @@ const Ask = ({ universities }) => {
             >
                 Tulis Pertanyaanmu
             </label>
-            <textarea value={data.content} onChange={(e) => setData('content', e.target.value)} className={`border ${errors.content ? 'border-red-500' : 'border-primary'} rounded-lg`} rows={5} />
-            <p className="font-normal text-sm text-red-500">{errors.content}</p>
-            <div className="w-full flex flex-row justify-between flex-wrap gap-2">
-                <div>
-                    <div className="w-full lg:w-5/12 flex flex-row justify-between items-center mb-2">
-                        <label className="font-bold" htmlFor="jurusan">
-                            Pilih Jurusan
-                        </label>
-                        <select
-                            className={`border ${errors.major_id ? 'border-red-500' : 'border-primary'} px-4 py-2 rounded-lg text-center font-bold appearance-none`}
-                            name="university_id"
-                            value={data.university_id}
-                            onChange={(e) => setData(prevData => ({ ...prevData, university_id: e.target.value, major_id: '' }))}
-                        >
-                            <option value="">Pilih Universitas</option>
-                            {universities.map(university => (
-                                <option key={university.id} value={university.id}>{university.name}</option>
-                            ))}
-                        </select>
-                    </div>
-                    <p className="font-normal text-sm text-red-500">{errors.major_id}</p>
-                </div>
-                <div>
-                    <div className="w-full lg:w-5/12 flex flex-row justify-between items-center">
-                        <label className="font-bold" htmlFor="universitas">
-                            Pilih Universitas
-                        </label>
-                        <select
-                            className={`border ${errors.university_id ? 'border-red-500' : 'border-primary'} px-4 py-2 rounded-lg text-center font-bold appearance-none`}
-                            name="major_id"
-                            value={data.major_id}
-                            onChange={(e) => setData('major_id', e.target.value)}
-                        >
-                            <option value="">Pilih Jurusan</option>
-                            {universities.map(university => {
-                                if (university.id == data.university_id) {
-                                    return university.majors.map(major => (
-                                        <option key={major.id} value={major.id}>{major.name}</option>
-                                    ));
-                                }
-                            })}
-                        </select>
-                    </div>
-                    <p className="font-normal text-sm text-red-500">{errors.major_id}</p>
-                </div>
+            <div className="w-full">
+                <textarea value={data.content} onChange={(e) => setData('content', e.target.value)} className={`border ${errors.content ? 'border-red-500' : 'border-primary'} w-full rounded-lg mb-1`} rows={5} />
+                <p className="font-normal text-sm text-red-500">{errors.content}</p>
+            </div>
+            <div className="w-full flex justify-between flex-wrap gap-3 md:flex-row">
+                <DropdownInput
+                    datas={universities}
+                    label={"Pilih Universitas"}
+                    name={"university_id"}
+                    error={errors.university_id}
+                    value={data.university_id}
+                    onChange={handleChangeUniversity}
+                />
+                <DropdownInput
+                    datas={universities[data.university_id - 1]?.majors ?? []}
+                    label={"Pilih Jurusan"}
+                    name={"major_id"}
+                    error={errors.major_id}
+                    value={data.major_id}
+                    onChange={handleChangeMajor}
+                />
             </div>
             <button
                 className="bg-primary py-2 px-4 w-fit text-white font-bold rounded-lg self-end"
                 type="submit"
             >
-                Ajukan Pertanyaan
+                Kirim Pertanyaan
             </button>
         </form>
     );
