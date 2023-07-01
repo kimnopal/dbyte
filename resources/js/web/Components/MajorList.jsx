@@ -7,7 +7,7 @@ const MajorList = ({ majors }) => {
     }
 
     return (
-        <section className="px-4 py-12">
+        <section className="py-12">
             <div className="">
                 <div className={`grid ${urlParamChecker('/forum') ? 'grid-cols-[repeat(6,minmax(auto,_1fr))]' : 'grid-cols-[repeat(5,minmax(auto,_1fr))]'}  gap-4 no-scrollbar min-w-0 overflow-x-scroll`}>
                     {window.location.pathname.includes('/forum') ?

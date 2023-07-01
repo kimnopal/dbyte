@@ -2,7 +2,7 @@ import naufalImg from "./../../../../public/images/naufal.jpg"
 
 const About = () => {
     return (
-        <section className="px-4 py-12">
+        <section className="py-12">
             <div className="">
                 <h2 className="text-xl text-center text-primary font-semibold mb-6 md:text-2xl md:mb-7">Tentang Kami</h2>
                 <div className="flex flex-col justify-center items-center sm:gap-7 sm:flex-row">

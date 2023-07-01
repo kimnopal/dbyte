@@ -6,7 +6,7 @@ const Layout = ({ children, auth }) => {
         <>
             <Navbar auth={auth} />
             <div className="md:max-w-[865px] m-auto min-h-screen">
-                <main>
+                <main className="px-4 ">
                     {children}
                 </main>
             </div>
