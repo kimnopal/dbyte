@@ -54,6 +54,7 @@ class ProfileController extends Controller
             'description' => 'nullable',
         ];
 
+
         if ($request->input('username') != $user->username) {
             $rules['username'] = 'required|unique:users,username|max:25|alpha_num|lowercase';
         }
@@ -65,7 +66,7 @@ class ProfileController extends Controller
                 Storage::delete($user->photo);
             }
             $validatedData['photo'] = $request->file('photo')->store('profiles');
-        } else {
+        } else if ($request->file('photo') == null) {
             if ($user->photo) {
                 Storage::delete($user->photo);
             }

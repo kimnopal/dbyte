@@ -28,7 +28,7 @@ class QuestionController extends Controller
                 $query->where('university_id', $university?->id);
             })->when($request->input('major'), function ($query) use ($major) {
                 $query->where('major_id', $major?->id);
-            })->latest()->paginate(1)->withQueryString()
+            })->latest()->paginate(5)->withQueryString()
         ]);
     }
 

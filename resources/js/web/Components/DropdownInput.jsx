@@ -8,7 +8,7 @@ const DropdownInput = ({ datas, label, name, error, value, onChange }) => {
                 <select
                     className={`border ${error ? 'border-red-500' : 'border-primary'} px-4 py-2 rounded-lg text-center font-bold appearance-none`}
                     name={name}
-                    value={value}
+                    value={value || ''}
                     onChange={onChange}
                 >
                     <option value="">Semua</option>

@@ -3,18 +3,18 @@ import DropdownInput from "./DropdownInput";
 import { useRef } from "react";
 
 const BioEdit = ({ user, universities }) => {
-    const { data, setData, post } = useForm({
+    const { data, setData, post, errors } = useForm({
         username: user.username,
-        photo: user.photo,
         university_id: user.university_id,
         major_id: user.major_id,
         description: user.description || '',
         _method: 'put',
     })
+    console.log(errors)
 
     const photoPreview = useRef()
     const handlePhotoChange = (e) => {
-        setData('photo', e.target.files[0])
+        setData(prevData => ({ ...prevData, photo: e.target.files[0] }))
         photoPreview.current.src = URL.createObjectURL(e.target.files[0])
         photoPreview.current.onload = function () {
             URL.revokeObjectURL(photoPreview.current.src)
@@ -22,7 +22,7 @@ const BioEdit = ({ user, universities }) => {
     }
 
     const handleDeletePhoto = () => {
-        setData('photo', '')
+        setData(prevData => ({ ...prevData, photo: '' }))
         photoPreview.current.src = '/images/profile.png'
     }
 
