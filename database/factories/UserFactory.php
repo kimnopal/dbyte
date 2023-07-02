@@ -25,7 +25,7 @@ class UserFactory extends Factory
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'photo' => '/images/profile.png',
+            'photo' => null,
             'description' => 'lorem ipsum dolor sit amet',
             'university_id' => $universities->pluck('id')->random(),
             'major_id' => $universities->where('id', 5)->pluck('majors')->first()->pluck('id')->random(),

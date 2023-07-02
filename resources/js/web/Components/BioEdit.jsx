@@ -6,24 +6,14 @@ const BioEdit = ({ user, universities }) => {
         photo: user.photo,
         university_id: user.university_id,
         major_id: user.major_id,
-        description: user.description,
+        description: user.description || '',
         _method: 'put',
     })
 
     const submit = (e) => {
         e.preventDefault()
-        // const formData = new FormData()
-        // formData.append('username', data.username)
-        // formData.append('photo', data.photo)
-        // formData.append('university_id', data.university_id)
-        // formData.append('major_id', data.major_id)
-        // formData.append('description', data.description)
-        // post(`/profile/${user.username}`, { forceFormData: true })
         post(`/profile/${user.username}`)
-        // router.post(`/profile/${user.username}`, data, { _method: 'put', forceFormData: true })
     }
-    console.log(data)
-    console.log(usePage().props.errors)
 
     return (
         <section className=" px-4 pt-20 pb-6 md:pb-12">
@@ -33,7 +23,7 @@ const BioEdit = ({ user, universities }) => {
                     <div className="w-full flex flex-row gap-4">
                         <img
                             className="w-24 h-24 rounded-full"
-                            src={`/images/${user.photo}`}
+                            src={`${user.photo ? `/images/${user.photo}` : '/images/profile.png'}`}
                             alt=""
                         />
                         <div className="flex flex-col gap-2 justify-center">

@@ -27,7 +27,7 @@ const NavProfile = ({ auth }) => {
         <div className="flex flex-col items-center py-2 rounded-lg cursor-pointer border border-secondary md:border-none md:relative md:py-0" onClick={() => setIsToggle(!isToggle)} ref={navProfile}>
             <div className="aspect-square w-8 rounded-full overflow-hidden md:w-9">
                 {/* <div className=""> */}
-                <img src={`/images/${auth.user.photo}`} alt="" className="object-cover aspect-square" />
+                <img src={`${auth.user.photo ? `/images/${auth.user.photo}` : '/images/profile.png'}`} alt="" className="object-cover aspect-square" />
                 {/* </div> */}
             </div>
             <div className={`${isToggle ? 'visible !h-auto md:!opacity-100 md:!top-[130%]' : 'invisible'} h-0 flex flex-col items-center md:transition-all md:!h-auto md:opacity-0 md:rounded-md md:bg-white md:shadow-lg md:border md:border-secondary md:absolute md:top-[110%] md:right-0`}>

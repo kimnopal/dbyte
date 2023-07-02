@@ -6,7 +6,7 @@ const SimpleProfile = ({ user }) => {
             <Link href={`profile/${user.username}`} className="rounded-full">
                 <img
                     className="w-12 h-12 rounded-full"
-                    src={`/images/${user.photo}`}
+                    src={`${user.photo ? `/images/${user.photo}` : '/images/profile.png'}`}
                     alt=""
                 />
             </Link>
