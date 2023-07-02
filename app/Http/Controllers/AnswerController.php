@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Answer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 
 class AnswerController extends Controller
@@ -62,7 +63,20 @@ class AnswerController extends Controller
      */
     public function update(Request $request, Answer $answer)
     {
-        //
+        if (!auth()->user()) {
+            return to_route('login');
+        }
+
+        if (DB::table('votes')->where('user_id', auth()->user()->id)->where('answer_id', $answer->id)->get()->isNotEmpty()) {
+            DB::table('votes')->where('user_id', auth()->user()->id)->where('answer_id', $answer->id)->delete();
+        } else {
+            DB::table('votes')->insert([
+                'user_id' => auth()->user()->id,
+                'answer_id' => $answer->id
+            ]);
+        }
+
+        return back();
     }
 
     /**

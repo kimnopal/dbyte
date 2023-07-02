@@ -22,11 +22,11 @@ const Asked = ({ question }) => {
                     <span className="text-secondary text-xs  whitespace-nowrap self-end md:textsm md:self-auto">{question.created_at}</span>
                 </div>
                 <div className="w-fit flex items-center gap-2 md:mt-8">
-                    <Link className="w-8 h-8 rounded-full">
+                    <Link href={`/profile/${question.user.username}`} className="w-8 h-8 rounded-full">
                         <img className="w-8 h-8 rounded-full" src={`${question.user.photo ? `/images/${question.user.photo}` : '/images/profile.png'}`} alt="" />
                     </Link>
                     <div className="flex flex-col justify-center md:flex-row md:items-center">
-                        <Link className="font-semibold text-md md:mr-2 md:text-lg">{question.user.username}</Link>
+                        <Link href={`/profile/${question.user.username}`} className="font-semibold text-md md:mr-2 md:text-lg">{question.user.username}</Link>
                         <span className="text-secondary text-xs md:text-sm">
                             {question.user.major.name}
                         </span>

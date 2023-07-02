@@ -70,7 +70,7 @@ class QuestionController extends Controller
     {
         return Inertia::render('DetailQuestion', [
             'question' => Question::with(['answers' => function (Builder $query) {
-                $query->with(['user' => ['university', 'major']])->withCount('voters')->orderBy('voters_count', 'desc');
+                $query->with(['user' => ['university', 'major'], 'voters'])->withCount('voters')->orderBy('voters_count', 'desc');
             }])->find($question->id),
         ]);
     }

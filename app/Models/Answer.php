@@ -38,9 +38,4 @@ class Answer extends Model
             get: fn (string $value) => Carbon::parse($value)->diffForHumans(),
         );
     }
-
-    public function getRouteKeyName()
-    {
-        return 'answer';
-    }
 }

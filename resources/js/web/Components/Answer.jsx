@@ -1,26 +1,42 @@
-import { Link } from "@inertiajs/react";
+import { Link, router } from "@inertiajs/react";
+import axios from "axios";
 
-const Answer = ({ answers }) => {
+const Answer = ({ answers, user }) => {
+    const handleLike = (e) => {
+        router.post(route('answer.update', e.currentTarget.value), { _method: 'patch' }, { preserveScroll: true })
+        // axios.post(route('answer.update', e.currentTarget.value), { _method: 'patch' })
+    }
+
     return (
         <>
             {/* <h1 className="text-lg text-primary font-semibold border-b border-b-primary mb-4 pb-2 w-fit">Jawaban Orang Lain</h1> */}
             {answers.map(answer => (
                 <div key={answer.id} className="w-full flex items-center gap-4 pb-6 md:gap-8 md:pb-12">
                     <div className="text-center">
-                        <Link className="text-primary">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="bi bi-caret-up-fill w-5 h-5 md:w-7 md:h-7" viewBox="0 0 16 16">
-                                <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
-                            </svg>
-                        </Link>
+                        <button type="button" onClick={handleLike} className="text-primary" value={answer.id}>
+                            {answer.voters.filter(voter => voter.username == user.username).length === 0 ?
+                                (
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="bi bi-caret-up  w-5 h-5 md:w-7 md:h-7" viewBox="0 0 16 16">
+                                        <path d="M3.204 11h9.592L8 5.519 3.204 11zm-.753-.659 4.796-5.48a1 1 0 0 1 1.506 0l4.796 5.48c.566.647.106 1.659-.753 1.659H3.204a1 1 0 0 1-.753-1.659z" />
+                                    </svg>
+                                ) :
+                                (
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="bi bi-caret-up-fill w-5 h-5 md:w-7 md:h-7" viewBox="0 0 16 16">
+                                        <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
+                                    </svg>
+
+                                )
+                            }
+                        </button>
                         <p>{answer.voters_count}</p>
                     </div>
                     <div className="w-full">
                         <div className="flex items-center flex-wrap gap-2 mb-2 md:mb-4">
-                            <Link className="w-8 h-8 rounded-full">
+                            <Link href={`/profile/${answer.user.username}`} className="w-8 h-8 rounded-full">
                                 <img className="w-8 h-8 rounded-full" src={`${answer.user.photo ? `/images/${answer.user.photo}` : '/images/profile.png'}`} alt="" />
                             </Link>
                             <div className="flex flex-col md:items-center md:flex-row">
-                                <Link className="font-semibold text-md md:mr-2 md:text-lg">{answer.user.username}</Link>
+                                <Link href={`/profile/${answer.user.username}`} className="font-semibold text-md md:mr-2 md:text-lg">{answer.user.username}</Link>
                                 <span className="text-secondary text-xs md:text-sm">
                                     {answer.user.major ? answer.user.major.name : 'Belum Dipilih'}
                                 </span>
