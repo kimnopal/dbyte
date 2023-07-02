@@ -3,7 +3,7 @@ import AddQuestion from "../Components/AddQuestion";
 import Questions from "../Components/Questions";
 import Layout from "../Layouts/Layout";
 
-export default function Forum({ universities, questions, auth }) {
+export default function Forum({ universities, majors, questions, auth }) {
     const { data, setData } = useForm({
         search: ''
     })
@@ -34,7 +34,7 @@ export default function Forum({ universities, questions, auth }) {
     return (
         <Layout auth={auth}>
             <Head title="Forum" />
-            <AddQuestion universities={universities} onChangeSearch={handleChangeSearch} />
+            <AddQuestion universities={universities} majors={majors} onChangeSearch={handleChangeSearch} />
             <Questions questions={questions.data} />
             <div className="flex flex-wrap gap-3 px-4 pb-12">
                 {questions.data.length != 0 && paginationLinks(3)}

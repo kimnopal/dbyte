@@ -6,27 +6,17 @@ import DropdownInput from "./DropdownInput";
 import { router, useForm, useRemember } from "@inertiajs/react";
 
 
-export default function AddQuestion({ universities, onChangeSearch }) {
+export default function AddQuestion({ universities, majors, onChangeSearch }) {
     const [ask, setAsk] = useState(false);
-    // const { data, setData } = useForm({
-    //     university_id: '',
-    //     major_id: '',
-    // })
 
     const handleChangeUniversity = (e) => {
-        // setData(() => ({ university_id: e.target.value, major_id: '' }))
         const university = universities.filter(university => university.id == e.target.value)[0]
-        router.get(route(route().current()), { university: university?.slug ?? '' })
+        router.get(route(route().current(), route().params), { university: university?.slug ?? '' })
     }
 
     const handleChangeMajor = (e) => {
-        // setData('major_id', e.target.value)
-        const university = universities.filter(university => university.id == getUniversityID())[0]
-        const major = university?.majors.filter(major => major.id == e.target.value)[0]
-        router.get(route(route().current()), {
-            university: university?.slug ?? '',
-            major: major?.slug ?? ''
-        })
+        const major = majors.filter(major => major.id == e.target.value)[0]
+        router.get(route(route().current(), route().params), { major: major?.slug ?? '' })
     }
 
     const getUniversityID = () => {
@@ -35,8 +25,7 @@ export default function AddQuestion({ universities, onChangeSearch }) {
     }
 
     const getMajorID = () => {
-        return route().params.major ? universities
-            .filter(university => university.id == getUniversityID())[0]?.majors
+        return route().params.major ? majors
             .filter(major => major.slug == route().params.major)[0]?.id : ""
     }
 
@@ -54,7 +43,7 @@ export default function AddQuestion({ universities, onChangeSearch }) {
                         onChange={handleChangeUniversity}
                     />
                     <DropdownInput
-                        datas={universities.filter(university => university.id == getUniversityID())[0]?.majors ?? []}
+                        datas={majors}
                         label={"Pilih Jurusan"}
                         name={"major_id"}
                         error={""}

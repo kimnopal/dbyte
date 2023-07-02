@@ -1,4 +1,4 @@
-import { Link, router, useForm, usePage } from "@inertiajs/react";
+import { useForm } from "@inertiajs/react";
 import DropdownInput from "./DropdownInput";
 import { useRef } from "react";
 
@@ -10,7 +10,6 @@ const BioEdit = ({ user, universities }) => {
         description: user.description || '',
         _method: 'put',
     })
-    console.log(errors)
 
     const photoPreview = useRef()
     const handlePhotoChange = (e) => {
