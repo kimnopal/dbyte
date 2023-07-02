@@ -50,15 +50,12 @@ class ProfileController extends Controller
         $rules = [
             'university_id' => 'integer|nullable|exists:universities,id',
             'major_id' => ['integer', 'nullable', Rule::exists('major_university')->where('university_id', $request->university_id)->where('major_id', $request->major_id)],
-            'description' => 'nullable'
+            'photo' => 'image|nullable|file|max:2048',
+            'description' => 'nullable',
         ];
 
         if ($request->input('username') != $user->username) {
             $rules['username'] = 'required|unique:users,username|max:25|alpha_num|lowercase';
-        }
-
-        if ($request->file('photo')) {
-            $rules['photo'] = 'image|file|max:2048';
         }
 
         $validatedData = $request->validate($rules);
@@ -68,6 +65,10 @@ class ProfileController extends Controller
                 Storage::delete($user->photo);
             }
             $validatedData['photo'] = $request->file('photo')->store('profiles');
+        } else {
+            if ($user->photo) {
+                Storage::delete($user->photo);
+            }
         }
 
         User::where('id', $user->id)->update($validatedData);

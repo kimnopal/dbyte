@@ -1,4 +1,6 @@
 import { Link, router, useForm, usePage } from "@inertiajs/react";
+import DropdownInput from "./DropdownInput";
+import { useRef } from "react";
 
 const BioEdit = ({ user, universities }) => {
     const { data, setData, post } = useForm({
@@ -10,36 +12,76 @@ const BioEdit = ({ user, universities }) => {
         _method: 'put',
     })
 
+    const photoPreview = useRef()
+    const handlePhotoChange = (e) => {
+        setData('photo', e.target.files[0])
+        photoPreview.current.src = URL.createObjectURL(e.target.files[0])
+        photoPreview.current.onload = function () {
+            URL.revokeObjectURL(photoPreview.current.src)
+        }
+    }
+
+    const handleDeletePhoto = () => {
+        setData('photo', '')
+        photoPreview.current.src = '/images/profile.png'
+    }
+
+    const handleChangeUniversity = (e) => setData(prevData => ({ ...prevData, university_id: e.target.value || null, major_id: null }))
+    const handleChangeMajor = (e) => setData('major_id', e.target.value || null)
+
     const submit = (e) => {
         e.preventDefault()
         post(`/profile/${user.username}`)
     }
 
     return (
-        <section className=" px-4 pt-20 pb-6 md:pb-12">
-            <form onSubmit={submit} className="flex flex-col lg:flex-row gap-y-3">
-                <div className="w-full lg:w-3/5 flex flex-col gap-y-2">
-                    <input name="_method" type="hidden" value="PUT" />
-                    <div className="w-full flex flex-row gap-4">
-                        <img
-                            className="w-24 h-24 rounded-full"
-                            src={`${user.photo ? `/images/${user.photo}` : '/images/profile.png'}`}
-                            alt=""
-                        />
-                        <div className="flex flex-col gap-2 justify-center">
-                            <input
-                                type="text"
-                                className="border border-secondary px-2 py-1 rounded-md"
-                                placeholder="Username"
-                                value={data.username}
-                                onChange={(e) => setData('username', e.target.value)}
-                            />
-                            <input type="file" onChange={(e) => setData('photo', e.target.files[0])} />
+        <section className="pt-20 pb-6 md:pb-12">
+            <form onSubmit={submit} className="flex flex-col">
+                <div className="flex flex-col gap-5 mb-4 md:flex-row">
+                    <div className="w-full flex flex-col gap-2 md:w-3/5">
+                        <input name="_method" type="hidden" value="PUT" />
+                        <div className="flex flex-col gap-2 mb-4">
+                            <div className="w-full flex gap-4">
+                                <img
+                                    className="w-24 h-24 rounded-full"
+                                    src={`${user.photo ? `/images/${user.photo}` : '/images/profile.png'}`}
+                                    alt=""
+                                    ref={photoPreview}
+                                />
+                                <div className="flex flex-col gap-2 justify-center">
+                                    <input
+                                        type="text"
+                                        className="w-full border border-secondary px-4 py-2 rounded-lg"
+                                        placeholder="Username"
+                                        value={data.username}
+                                        onChange={(e) => setData('username', e.target.value)}
+                                    />
+                                    <input type="file" className="w-full file:cursor-pointer file:bg-secondary/30 file:text-primary file:py-2 file:px-4 file:rounded-lg file:border-0" onChange={handlePhotoChange} />
+                                </div>
+                            </div>
+                            <button type="button" onClick={handleDeletePhoto} className="w-full px-4 py-2 rounded-lg bg-primary text-white text-center">Hapus Gambar</button>
                         </div>
-                    </div>
-                    <div className="w-full lg:w-5/12 flex flex-row justify-between items-center">
-                        <select
-                            className="border border-primary px-4 py-2 rounded-lg text-center font-bold appearance-none"
+                        <div className="w-full flex flex-col justify-between gap-2">
+                            {/* <div className="w-full lg:w-5/12 flex flex-col justify-between items-center"> */}
+                            <DropdownInput
+                                datas={universities}
+                                label={"Pilih Universitas"}
+                                name={"university_id"}
+                                error={""}
+                                value={data.university_id}
+                                onChange={handleChangeUniversity}
+                            />
+                            <DropdownInput
+                                datas={universities.filter(university => university.id == data.university_id)[0]?.majors ?? []}
+                                label={"Pilih Jurusan"}
+                                name={"major_id"}
+                                error={""}
+                                value={data.major_id}
+                                onChange={handleChangeMajor}
+                            />
+                        </div>
+                        {/* <select
+                            className="w-full border border-primary px-4 py-2 rounded-lg text-center font-bold appearance-none"
                             name="university_id"
                             value={data.university_id || ''}
                             onChange={(e) => setData(prevData => ({ ...prevData, university_id: e.target.value || null, major_id: null }))}
@@ -53,11 +95,11 @@ const BioEdit = ({ user, universities }) => {
                                     {university.name}
                                 </option>
                             ))}
-                        </select>
-                    </div>
-                    <div className="w-full lg:w-5/12 flex flex-row justify-between items-center">
+                        </select> */}
+                        {/* </div> */}
+                        {/* <div className="w-full lg:w-5/12 flex flex-row justify-between items-center">
                         <select
-                            className="border border-primary px-4 py-2 rounded-lg text-center font-bold appearance-none"
+                            className="w-full border border-primary px-4 py-2 rounded-lg text-center font-bold appearance-none"
                             name="major_id"
                             onChange={(e) => setData('major_id', e.target.value || null)}
                             value={data.major_id || ''}
@@ -75,18 +117,24 @@ const BioEdit = ({ user, universities }) => {
                                 }
                             })}
                         </select>
+                    </div> */}
+                    </div>
+                    <div className="flex flex-col gap-2 md:w-2/5">
+                        <label className="font-bold whitespace-nowrap">
+                            Deskripsi
+                        </label>
+                        <textarea
+                            name=""
+                            id=""
+                            cols="30"
+                            rows="10"
+                            className="w-full border border-secondary p-4 rounded-lg"
+                            value={data.description}
+                            onChange={(e) => setData('description', e.target.value)}
+                        ></textarea>
                     </div>
                 </div>
-                <textarea
-                    name=""
-                    id=""
-                    cols="30"
-                    rows="10"
-                    className="w-full lg:w-2/5 border border-secondary p-4 rounded-lg"
-                    value={data.description}
-                    onChange={(e) => setData('description', e.target.value)}
-                ></textarea>
-                <button type="submit" className="bg-primary text-white px-3 py-1 rounded-lg">Simpan Perubahan</button>
+                <button type="submit" className="bg-primary text-white px-4 py-2 rounded-lg self-end">Simpan Perubahan</button>
             </form>
         </section>
     );
