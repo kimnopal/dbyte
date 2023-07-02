@@ -20,7 +20,7 @@ const Question = ({ question }) => {
                         </Link>
                     </div>
                     <span className="text-secondary text-sm md:text-base">
-                        {question.answers.length} orang telah menjawab
+                        {question.answers_count} orang telah menjawab
                     </span>
                 </div>
             </div>

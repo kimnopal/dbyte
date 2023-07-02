@@ -3,14 +3,15 @@ import Answer from "../Components/Answer";
 import Asked from "../Components/Asked";
 import Answering from "../Components/Answering";
 
-const Task = ({ auth, question }) => {
+const DetailQuestion = ({ auth, question }) => {
+    console.log(question)
     return (
         <Layout auth={auth}>
             <Asked question={question} />
+            <Answering question={question} user={auth.user} />
             <Answer answers={question.answers} />
-            <Answering question={question} />
         </Layout>
     );
 };
 
-export default Task;
+export default DetailQuestion;

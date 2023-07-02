@@ -25,13 +25,13 @@ const Bio = ({ user }) => {
                         </div>
                     </div>
                 </div>
-                <span className="text-sm text-secondary mb-2">{user.major ? user.major.name : 'Belum Memilih Jurusan'}</span>
-                <span className="text-sm text-secondary">
+                <span className="text-sm text-secondary mb-1 md:text-base">{user.major ? user.major.name : 'Belum Memilih Jurusan'}</span>
+                <span className="text-sm text-secondary md:text-base">
                     {user.university ? user.university.name : 'Belum Memilih Universitas'}
                 </span>
             </div>
             <div className="w-full lg:w-2/5 border border-primary p-4 rounded-lg">
-                <p className="text-sm text-primary">{user.description ?? "Tidak ada deskripsi"}</p>
+                <p className="text-sm text-primary md:text-base">{user.description ?? "Tidak ada deskripsi"}</p>
             </div>
         </section>
     );

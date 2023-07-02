@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Major;
 use App\Models\Question;
 use App\Models\University;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
@@ -21,7 +22,7 @@ class QuestionController extends Controller
         $major = Major::firstWhere('slug', $request->input('major'));
         return Inertia::render('Forum', [
             'universities' => University::with('majors')->get(),
-            'questions' => Question::when($request->input('search'), function ($query, $search) {
+            'questions' => Question::withCount('answers')->when($request->input('search'), function ($query, $search) {
                 $query->where('content', 'like', '%' . $search . '%');
             })->when($request->input('university'), function ($query) use ($university) {
                 $query->where('university_id', $university?->id);
@@ -67,8 +68,10 @@ class QuestionController extends Controller
      */
     public function show(Question $question)
     {
-        return Inertia::render('Task', [
-            'question' => $question
+        return Inertia::render('DetailQuestion', [
+            'question' => Question::with(['answers' => function (Builder $query) {
+                $query->with(['user' => ['university', 'major']])->withCount('voters')->orderBy('voters_count', 'desc');
+            }])->find($question->id),
         ]);
     }
 

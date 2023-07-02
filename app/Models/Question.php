@@ -13,7 +13,7 @@ class Question extends Model
 {
     use HasFactory;
 
-    protected $with = ['answers' => ['user' => ['major', 'university']], 'user' => ['major', 'university'], 'university', 'major'];
+    protected $with = ['user' => ['major', 'university'], 'university', 'major'];
 
     protected $fillable = ['content', 'slug', 'user_id', 'university_id', 'major_id'];
 
