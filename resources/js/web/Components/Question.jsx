@@ -7,7 +7,7 @@ const Question = ({ question }) => {
             <div className="flex flex-col mb-4 md:flex-row gap-4 md:gap-6">
                 <SimpleProfile user={question.user} />
                 <div className="w-full flex flex-col gap-3 lg:w-4/6">
-                    <Link href={`/forum/${question.slug}`} className="font-semibold text-xl">
+                    <Link href={`/forum/${question.slug}`} className="font-semibold text-xl w-fit">
                         {question.content.length > 20 ? question.content.slice(0, 70) + '...' : question.content}{" "}
                     </Link>
                     <div className="flex flex-col gap-1 md:flex-row md:items-center md:gap-3">

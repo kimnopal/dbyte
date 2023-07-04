@@ -14,11 +14,19 @@ const Answering = ({ question, user }) => {
     return (
         <div className="w-full pb-6">
             <div className="w-fit flex items-center gap-2 mb-2 md:mb-4">
-                <Link className="w-8 h-8 rounded-full">
-                    <img className="w-8 h-8 rounded-full" src={`${user.photo ? `/images/${user.photo}` : '/images/profile.png'}`} alt="" />
-                </Link>
+                <img className="w-8 h-8 rounded-full" src={`${user?.photo ? `/images/${user.photo}` : '/images/profile.png'}`} alt="" />
                 <div className="flex flex-col justify-center md:flex-row md:items-center">
-                    <Link className="font-semibold text-md md:mr-2 md:text-lg">{user.username}</Link>
+                    <div className="flex items-center flex-wrap gap-1 md:mr-2">
+                        <p className="font-semibold text-md md:text-lg">{user?.username}</p>
+                        <div className="flex">
+                            {user?.badges?.map(badge => (
+                                <div key={badge.id} className="relative group cursor-pointer">
+                                    <p className="hidden absolute -top-full left-1/2 -translate-x-1/2 px-3 py-1 bg-primary text-white text-sm rounded-md group-hover:block">{badge.name}</p>
+                                    <img src={badge.icon} alt="" className="w-8 h-8" />
+                                </div>
+                            ))}
+                        </div>
+                    </div>
                     {/* <span className="text-secondary text-xs md:text-sm">
                         {user.major.name}
                     </span>

@@ -16,7 +16,7 @@ class ProfileController extends Controller
     public function index(): Response
     {
         return Inertia::render('Profile', [
-            'user' => User::with(['major', 'university', 'badges', 'answers' => function ($query) {
+            'user' => User::with(['major', 'university', 'answers' => function ($query) {
                 $query->withCount(['voters']);
             }])->withCount(['questions'])->find(auth()->user()->id)
         ]);
@@ -25,7 +25,7 @@ class ProfileController extends Controller
     public function show(User $user): Response
     {
         return Inertia::render('Profile', [
-            'user' => User::with(['major', 'university', 'badges', 'answers' => function ($query) {
+            'user' => User::with(['major', 'university', 'answers' => function ($query) {
                 $query->withCount(['voters']);
             }])->withCount(['questions'])->find($user->id)
         ]);

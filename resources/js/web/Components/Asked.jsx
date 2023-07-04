@@ -26,13 +26,25 @@ const Asked = ({ question }) => {
                         <img className="w-8 h-8 rounded-full" src={`${question.user.photo ? `/images/${question.user.photo}` : '/images/profile.png'}`} alt="" />
                     </Link>
                     <div className="flex flex-col justify-center md:flex-row md:items-center">
-                        <Link href={`/profile/${question.user.username}`} className="font-semibold text-md md:mr-2 md:text-lg">{question.user.username}</Link>
+                        <div className="flex items-center flex-wrap gap-1 md:mr-2">
+                            <Link href={`/profile/${question.user.username}`} className="font-semibold text-md md:text-lg">
+                                {question.user.username}
+                            </Link>
+                            <div className="flex">
+                                {question.user.badges?.map(badge => (
+                                    <div key={badge.id} className="relative group cursor-pointer">
+                                        <p className="hidden absolute -top-full left-1/2 -translate-x-1/2 px-3 py-1 bg-primary text-white text-sm rounded-md group-hover:block">{badge.name}</p>
+                                        <img src={badge.icon} alt="" className="w-8 h-8" />
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
                         <span className="text-secondary text-xs md:text-sm">
-                            {question.user.major.name}
+                            {question.user.major ? question.user.major.name : "Belum Dipilih"}
                         </span>
                         <span className="hidden md:block md:mx-2">-</span>
                         <span className="text-secondary text-xs md:text-sm">
-                            {question.user.university.name}
+                            {question.user.university ? question.user.university.name : "Belum Dipilih"}
                         </span>
                     </div>
                 </div>

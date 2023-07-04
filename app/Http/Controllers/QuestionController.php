@@ -21,7 +21,7 @@ class QuestionController extends Controller
         $university = University::firstWhere('slug', $request->input('university'));
         $major = Major::firstWhere('slug', $request->input('major'));
         return Inertia::render('Forum', [
-            'universities' => University::all(),
+            'universities' => University::with('majors')->get(),
             'majors' => Major::all(),
             'questions' => Question::withCount('answers')->when($request->input('search'), function ($query, $search) {
                 $query->where('content', 'like', '%' . $search . '%');

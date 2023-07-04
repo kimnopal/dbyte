@@ -57,19 +57,19 @@ class DatabaseSeeder extends Seeder
         Badge::create([
             'name' => 'Newbie',
             'slug' => 'newbie',
-            'icon' => '/images/bagdes/newbie.png'
+            'icon' => '/images/badges/newbie.png'
         ]);
 
         Badge::create([
             'name' => 'Intermediate',
             'slug' => 'intermediate',
-            'icon' => '/images/bagdes/intermediate.png'
+            'icon' => '/images/badges/intermediate.png'
         ]);
 
         Badge::create([
             'name' => 'Pro',
             'slug' => 'pro',
-            'icon' => '/images/bagdes/pro.png'
+            'icon' => '/images/badges/pro.png'
         ]);
 
         $badges = Badge::all();
