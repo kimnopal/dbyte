@@ -13,14 +13,16 @@ const Bio = ({ user }) => {
                     <div className="flex flex-col gap-2 justify-center">
                         <h1 className="font-semibold text-2xl">{user.username}</h1>
                         <div className="flex flex-wrap gap-2 items-center">
-                            <div className="flex">
-                                {user.badges?.map(badge => (
-                                    <div key={badge.id} className="relative group cursor-pointer">
-                                        <p className="hidden absolute -top-full left-1/2 -translate-x-1/2 px-4 py-1 bg-primary text-white rounded-lg group-hover:block">{badge.name}</p>
-                                        <img src={badge.icon} alt="" className="w-10 h-10" />
-                                    </div>
-                                ))}
-                            </div>
+                            {user.badges.length !== 0 &&
+                                <div className="flex">
+                                    {user.badges?.map(badge => (
+                                        <div key={badge.id} className="relative group cursor-pointer">
+                                            <p className="hidden absolute -top-full left-1/2 -translate-x-1/2 px-4 py-1 bg-primary text-white rounded-lg group-hover:block">{badge.name}</p>
+                                            <img src={badge.icon} alt="" className="w-10 h-10" />
+                                        </div>
+                                    ))}
+                                </div>
+                            }
                             {usePage().props.auth.user?.id === user.id && (
                                 <Link
                                     className="bg-primary text-white px-3 py-1 rounded-lg"

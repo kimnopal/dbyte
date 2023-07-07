@@ -4,7 +4,7 @@ const Answer = ({ answers, user }) => {
     const handleLike = (e) => {
         router.post(route('answer.update', e.currentTarget.value), { _method: 'patch' }, { preserveScroll: true })
     }
-
+    console.log(answers);
     return (
         <>
             {answers.map(answer => (

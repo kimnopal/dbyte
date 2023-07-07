@@ -11,11 +11,11 @@ const Question = ({ question }) => {
                         {question.content.length > 20 ? question.content.slice(0, 70) + '...' : question.content}{" "}
                     </Link>
                     <div className="flex flex-col gap-1 md:flex-row md:items-center md:gap-3">
-                        <Link href={`/forum?university=${question.university.name}`} className="text-secondary text-sm w-fit md:text-base">
+                        <Link href={`/forum?university=${question.university.slug}`} className="text-secondary text-sm w-fit md:text-base">
                             {question.university.name}
                         </Link>
                         <div className="hidden w-[5px] h-[5px] rounded-full bg-secondary md:block"></div>
-                        <Link href={`/forum?major=${question.major.name}`} className="text-secondary text-sm w-fit md:text-base">
+                        <Link href={`/forum?major=${question.major.slug}`} className="text-secondary text-sm w-fit md:text-base">
                             {question.major.name}
                         </Link>
                     </div>

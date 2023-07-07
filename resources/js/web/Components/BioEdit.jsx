@@ -61,7 +61,6 @@ const BioEdit = ({ user, universities }) => {
                             <button type="button" onClick={handleDeletePhoto} className="w-full px-4 py-2 rounded-lg bg-primary text-white text-center">Hapus Gambar</button>
                         </div>
                         <div className="w-full flex flex-col justify-between gap-2">
-                            {/* <div className="w-full lg:w-5/12 flex flex-col justify-between items-center"> */}
                             <DropdownInput
                                 datas={universities}
                                 label={"Pilih Universitas"}
@@ -79,44 +78,6 @@ const BioEdit = ({ user, universities }) => {
                                 onChange={handleChangeMajor}
                             />
                         </div>
-                        {/* <select
-                            className="w-full border border-primary px-4 py-2 rounded-lg text-center font-bold appearance-none"
-                            name="university_id"
-                            value={data.university_id || ''}
-                            onChange={(e) => setData(prevData => ({ ...prevData, university_id: e.target.value || null, major_id: null }))}
-                        >
-                            <option value="">Belum Dipilih</option>
-                            {universities.map(university => (
-                                <option
-                                    key={university.id}
-                                    value={university.id}
-                                >
-                                    {university.name}
-                                </option>
-                            ))}
-                        </select> */}
-                        {/* </div> */}
-                        {/* <div className="w-full lg:w-5/12 flex flex-row justify-between items-center">
-                        <select
-                            className="w-full border border-primary px-4 py-2 rounded-lg text-center font-bold appearance-none"
-                            name="major_id"
-                            onChange={(e) => setData('major_id', e.target.value || null)}
-                            value={data.major_id || ''}
-                        >
-                            <option value="">Belum Dipilih</option>
-                            {universities.map(university => {
-                                if (university.id == data.university_id) {
-                                    return university.majors.map(major => (
-                                        <option
-                                            key={major.id}
-                                            value={major.id}
-                                        >{major.name}
-                                        </option>
-                                    ))
-                                }
-                            })}
-                        </select>
-                    </div> */}
                     </div>
                     <div className="flex flex-col gap-2 md:w-2/5">
                         <label className="font-bold whitespace-nowrap">

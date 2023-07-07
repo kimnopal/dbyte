@@ -1,9 +1,8 @@
-import MajorList from "./MajorList";
 import Ask from "./Ask";
 import { useState } from "react";
 import SearchInput from "./SearchInput";
 import DropdownInput from "./DropdownInput";
-import { router, useForm, useRemember } from "@inertiajs/react";
+import { router } from "@inertiajs/react";
 
 
 export default function AddQuestion({ universities, majors, onChangeSearch }) {

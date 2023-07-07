@@ -16,18 +16,18 @@ class ProfileController extends Controller
     public function index(): Response
     {
         return Inertia::render('Profile', [
-            'user' => User::with(['major', 'university', 'answers' => function ($query) {
+            'user' => User::with(['major', 'university', 'questions', 'answers' => function ($query) {
                 $query->withCount(['voters']);
-            }])->withCount(['questions'])->find(auth()->user()->id)
+            }])->find(auth()->user()->id)
         ]);
     }
 
     public function show(User $user): Response
     {
         return Inertia::render('Profile', [
-            'user' => User::with(['major', 'university', 'answers' => function ($query) {
+            'user' => User::with(['major', 'university', 'questions', 'answers' => function ($query) {
                 $query->withCount(['voters']);
-            }])->withCount(['questions'])->find($user->id)
+            }])->find($user->id)
         ]);
     }
 
@@ -44,14 +44,13 @@ class ProfileController extends Controller
     public function update(Request $request, User $user)
     {
         Gate::authorize('update-profile', $user);
-
+        // dd($request->all());
         $rules = [
             'university_id' => 'integer|nullable|exists:universities,id',
             'major_id' => ['integer', 'nullable', Rule::exists('major_university')->where('university_id', $request->university_id)->where('major_id', $request->major_id)],
             'photo' => 'image|nullable|file|max:2048',
             'description' => 'nullable',
         ];
-
 
         if ($request->input('username') != $user->username) {
             $rules['username'] = 'required|unique:users,username|max:25|alpha_num|lowercase';
@@ -64,7 +63,7 @@ class ProfileController extends Controller
                 Storage::delete($user->photo);
             }
             $validatedData['photo'] = $request->file('photo')->store('profiles');
-        } else if ($request->file('photo') == null) {
+        } else if ($request->file('photo') === '') {
             if ($user->photo) {
                 Storage::delete($user->photo);
             }

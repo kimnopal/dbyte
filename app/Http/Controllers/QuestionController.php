@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Major;
 use App\Models\Question;
 use App\Models\University;
-use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 use illuminate\Support\Str;
@@ -70,7 +70,7 @@ class QuestionController extends Controller
     public function show(Question $question)
     {
         return Inertia::render('DetailQuestion', [
-            'question' => Question::with(['answers' => function (Builder $query) {
+            'question' => Question::with(['answers' => function ($query) {
                 $query->with(['user' => ['university', 'major'], 'voters'])->withCount('voters')->orderBy('voters_count', 'desc');
             }])->find($question->id),
         ]);
@@ -81,7 +81,12 @@ class QuestionController extends Controller
      */
     public function edit(Question $question)
     {
-        //
+        Gate::authorize('update-question', $question);
+
+        return Inertia::render('Question/Edit', [
+            'question' => $question,
+            'universities' => University::with('majors')->get(),
+        ]);
     }
 
     /**
@@ -89,7 +94,21 @@ class QuestionController extends Controller
      */
     public function update(Request $request, Question $question)
     {
-        //
+        Gate::authorize('update-question', $question);
+
+        $validatedData = $request->validate([
+            'university_id' => 'required|exists:universities,id',
+            'major_id' => ['required', 'integer', Rule::exists('major_university')->where('university_id', $request->university_id)->where('major_id', $request->major_id)],
+            'content' => 'required'
+        ]);
+
+        if ($request->content !== $question->content) {
+            $validatedData['slug'] = Str::slug(Str::words($validatedData['content'], 20, ''));
+        }
+
+        Question::where('id', $question->id)->update($validatedData);
+
+        return redirect('/profile')->with('success', 'Berhasil memperbarui pertanyaan');
     }
 
     /**
@@ -97,6 +116,7 @@ class QuestionController extends Controller
      */
     public function destroy(Question $question)
     {
-        //
+        $question->destroy($question->id);
+        return back()->with('success', 'Berhasil menghapus pertanyaan');
     }
 }
